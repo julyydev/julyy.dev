@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+import ThemeToggleButton from './ThemeToggleButton';
+import { themedPalette } from '@/styles/themes';
 
 const Header = () => {
     return (
@@ -9,6 +11,7 @@ const Header = () => {
                 <LogoLink href={'/'}>julyy.dev</LogoLink>
             </Title>
             <Navigation>
+                <ThemeToggleButton />
                 <NavigationItem>
                     <MenuLink href="/blog">Blog</MenuLink>
                 </NavigationItem>
@@ -26,8 +29,8 @@ const Header = () => {
 export default Header;
 
 const HeaderWrapper = styled.header`
-    background-color: #333333;
-    color: #ffffff;
+    background-color: ${themedPalette.bg_page1};
+    color: ${themedPalette.text1};
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -39,7 +42,7 @@ const Title = styled.h1`
 `;
 
 const LogoLink = styled(Link)`
-    color: #ffffff;
+    color: ${themedPalette.text1};
     text-decoration: none;
 `;
 
@@ -53,7 +56,7 @@ const Navigation = styled.nav`
 `;
 
 const NavigationItem = styled.div`
-    color: #ffffff;
+    color: ${themedPalette.text1};
     font-size: 18px;
     margin-left: 20px;
     text-decoration: none;
