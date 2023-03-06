@@ -1,0 +1,78 @@
+import { PostData } from '@/types/post';
+import styled from 'styled-components';
+
+interface Props {
+    postData: PostData;
+}
+
+const BlogPostTitle = (props: Props) => {
+    const { postData } = props;
+
+    return (
+        <Wrapper>
+            <Thumbnail src={postData.thumbnail} />
+            <Title>{postData.title}</Title>
+            <Summary>{postData.summary}</Summary>
+            <MetaData>
+                <Category>{postData.category}</Category>
+                {postData.tag.map(tag => (
+                    <Tag key={tag}>{tag}</Tag>
+                ))}
+                <Date>{postData.date}</Date>
+            </MetaData>
+        </Wrapper>
+    );
+};
+
+const Wrapper = styled.div`
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+`;
+
+const Thumbnail = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+`;
+
+const Title = styled.h2`
+    margin-top: 0;
+    color: white;
+`;
+
+const Summary = styled.p`
+    font-style: italic;
+    color: white;
+`;
+
+const MetaData = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+`;
+
+const Category = styled.span`
+    background-color: #eee;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-right: 5px;
+`;
+
+const Tag = styled.span`
+    background-color: #eee;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-right: 5px;
+`;
+
+const Date = styled.span`
+    margin-left: auto;
+    color: white;
+`;
+
+export default BlogPostTitle;
