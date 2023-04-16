@@ -22,7 +22,7 @@ const nextConfig = {
                 port: '443',
             },
         ],
-        domains: ['drive.google.com', '142.250.206.206'],
+        domains: ['res.cloudinary.com', 'drive.google.com', '142.250.206.206'],
         path: '/_next/image',
         formats: ['image/avif', 'image/webp'],
     },

@@ -1,6 +1,7 @@
 import { PostData } from '@/types/post';
 import styled from 'styled-components';
 import Image from 'next/image';
+import googleDriveImageLoader from '@/loader';
 
 interface Props {
     postData: PostData;
@@ -9,11 +10,15 @@ interface Props {
 const PostCard = (props: Props) => {
     const { postData } = props;
 
+    const url = `https://res.cloudinary.com/dasqzoc8r/image/fetch/${encodeURIComponent(
+        postData.thumbnail,
+    )}`;
+
     return (
         <CardContainer>
             <Thumbnail>
                 <Image
-                    src={postData.thumbnail}
+                    src={url}
                     alt={postData.title}
                     placeholder="blur"
                     blurDataURL={postData.thumbnail}
