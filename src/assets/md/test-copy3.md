@@ -3,7 +3,7 @@ title: 테스트-md3
 summary: asjkd lkasdjla klasjkajdaksjd
 slug: test-copy3
 date: 2023. 3. 2.
-category: aaa
+category: bbb
 series:
 tag:
     - Notion
