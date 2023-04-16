@@ -15,7 +15,11 @@ const PostCard = (props: Props) => {
                 <Image
                     src={postData.thumbnail}
                     alt={postData.title}
-                    priority={true}
+                    placeholder="blur"
+                    blurDataURL={postData.thumbnail}
+                    sizes="(max-width: 768px) 100vw,
+                      (max-width: 1200px) 50vw,
+                      33vw"
                     width={100}
                     height={100}
                     style={{ width: '100%', height: '100%' }}
