@@ -22,6 +22,7 @@ const nextConfig = {
         path: '/_next/image',
         formats: ['image/avif', 'image/webp'],
     },
+    output: 'standalone',
 };
 
 module.exports = nextConfig;
