@@ -1,7 +1,6 @@
 import { PostData } from '@/types/post';
 import styled from 'styled-components';
 import Image from 'next/image';
-import googleDriveImageLoader from '@/loader';
 
 interface Props {
     postData: PostData;
