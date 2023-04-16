@@ -1,7 +1,7 @@
 ---
 title: 테스트-md
 summary: asjkd lkasdjla klasjkajdaksjd
-slug: test-md
+slug: test
 date: 2023. 3. 2.
 category: aaa
 series:
