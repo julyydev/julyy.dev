@@ -17,8 +17,12 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: '**.googleusercontent.com',
             },
+            {
+                hostname: '142.250.206.206',
+                port: '443',
+            },
         ],
-        domains: ['drive.google.com'],
+        domains: ['drive.google.com', '142.250.206.206'],
         path: '/_next/image',
         formats: ['image/avif', 'image/webp'],
     },
