@@ -49,11 +49,12 @@ const CardContainer = styled.div`
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    width: 90%;
 `;
 
 const Thumbnail = styled.div`
     width: 100%;
-    height: 150px;
+    height: 200px;
     object-fit: cover;
 `;
 
