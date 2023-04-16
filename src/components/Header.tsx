@@ -3,14 +3,18 @@ import React from 'react';
 import styled from 'styled-components';
 import ThemeToggleButton from './ThemeToggleButton';
 import { themedPalette } from '@/styles/themes';
+import SearchButton from './SearchButton';
 
 const Header = () => {
     return (
         <HeaderWrapper>
             <Title>
-                <LogoLink href={'/'}>julyy.dev</LogoLink>
+                <LogoLink href={'/'}>
+                    julyy.dev<Beta>βeta</Beta>
+                </LogoLink>
             </Title>
             <Navigation>
+                <SearchButton />
                 <ThemeToggleButton />
                 <NavigationItem>
                     <MenuLink href="/blog">Blog</MenuLink>
@@ -39,6 +43,10 @@ const HeaderWrapper = styled.header`
 const Title = styled.h1`
     font-size: 30px;
     margin: 0;
+`;
+
+const Beta = styled.span`
+    font-size: 10px;
 `;
 
 const LogoLink = styled(Link)`
