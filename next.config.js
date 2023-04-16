@@ -7,6 +7,7 @@ const nextConfig = {
     },
     images: {
         domains: ['drive.google.com'],
+        path: '/_next/image',
     },
 };
 
