@@ -1,4 +1,5 @@
 import { PostData } from '@/types/post';
+import Image from 'next/image';
 import styled from 'styled-components';
 
 interface Props {
@@ -10,7 +11,18 @@ const BlogPostTitle = (props: Props) => {
 
     return (
         <Wrapper>
-            <Thumbnail src={postData.thumbnail} />
+            <Thumbnail
+                src={postData.thumbnail}
+                alt={postData.title}
+                placeholder="blur"
+                blurDataURL={postData.thumbnail}
+                sizes="(max-width: 768px) 100vw,
+                      (max-width: 1200px) 50vw,
+                      33vw"
+                width={100}
+                height={100}
+                style={{ width: '100%', height: '100%' }}
+            />
             <Title>{postData.title}</Title>
             <Summary>{postData.summary}</Summary>
             <MetaData>
@@ -30,7 +42,7 @@ const Wrapper = styled.div`
     padding: 20px;
 `;
 
-const Thumbnail = styled.img`
+const Thumbnail = styled(Image)`
     position: absolute;
     top: 0;
     left: 0;
