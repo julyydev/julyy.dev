@@ -8,7 +8,7 @@ series:
 tag:
     - Notion
     - Github
-thumbnail: https://drive.google.com/uc?export=view&id=1aiqzy8agW7hS4pcP1SSjFdi7DiZpQJVw
+thumbnail: https://s3.ap-northeast-2.amazonaws.com/julyy.dev/test-md_0.png
 ---
 
 # 제목1
@@ -81,11 +81,11 @@ table(미구현)
 
 equation(미구현)
 
-![캡션 테스트](https://drive.google.com/uc?export=view&id=144FQFmOelatRV7lFbT69tLU1x6USty3h)
+![캡션 테스트](https://s3.ap-northeast-2.amazonaws.com/julyy.dev/test-md_1.png)
 
 <br>
 
-![강아지!!](https://drive.google.com/uc?export=view&id=1XXdiartgMPt0evQGvoFihtVfWNW7Fn3I)
+![강아지!!](https://s3.ap-northeast-2.amazonaws.com/julyy.dev/test-md_2.png)
 
 [내 깃허브](https://github.com/julyydev)
 
