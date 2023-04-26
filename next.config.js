@@ -9,24 +9,15 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'drive.google.com',
+                hostname: 's3.ap-northeast-2.amazonaws.com',
                 port: '',
-                pathname: '/uc',
-            },
-            {
-                protocol: 'https',
-                hostname: '**.googleusercontent.com',
-            },
-            {
-                hostname: '142.250.206.206',
-                port: '443',
+                pathname: '/julyy.dev',
             },
         ],
-        domains: ['res.cloudinary.com', 'drive.google.com', '142.250.206.206'],
+        domains: ['s3.ap-northeast-2.amazonaws.com'],
         path: '/_next/image',
         formats: ['image/avif', 'image/webp'],
     },
-    output: 'standalone',
 };
 
 module.exports = nextConfig;

@@ -9,15 +9,11 @@ interface Props {
 const PostCard = (props: Props) => {
     const { postData } = props;
 
-    const url = `https://res.cloudinary.com/dasqzoc8r/image/fetch/${encodeURIComponent(
-        postData.thumbnail,
-    )}`;
-
     return (
         <CardContainer>
             <Thumbnail>
                 <Image
-                    src={url}
+                    src={postData.thumbnail}
                     alt={postData.title}
                     placeholder="blur"
                     blurDataURL={postData.thumbnail}
