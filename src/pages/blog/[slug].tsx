@@ -1,8 +1,4 @@
-import {
-    GetServerSideProps,
-    GetStaticProps,
-    GetStaticPropsContext,
-} from 'next';
+import { GetStaticProps, GetStaticPropsContext } from 'next';
 import ReactMarkdown from 'react-markdown';
 import matter from 'gray-matter';
 import rehypeRaw from 'rehype-raw';
@@ -16,6 +12,9 @@ import { marked } from 'marked';
 import TOC from '@/components/TOC';
 import { Heading } from '@/types/heading';
 import Head from 'next/head';
+import CodeBlock from '@/components/CodeBlock';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 interface Props {
     postData: PostData;
@@ -53,6 +52,38 @@ const Post = (props: Props) => {
                             },
                             h3({ children }) {
                                 return <h3 id={`${children}`}>{children}</h3>;
+                            },
+                            pre({ children }) {
+                                return <CodeBlock>{children}</CodeBlock>;
+                            },
+                            code({
+                                node,
+                                inline,
+                                className,
+                                children,
+                                ...props
+                            }) {
+                                const match = /language-(\w+)/.exec(
+                                    className || '',
+                                );
+                                return !inline && match ? (
+                                    <SyntaxHighlighter
+                                        {...props}
+                                        children={String(children).replace(
+                                            /\n$/,
+                                            '',
+                                        )}
+                                        style={oneDark}
+                                        language={match[1]}
+                                        PreTag="div"
+                                        showLineNumbers
+                                        lineNumberStyle={{ marginLeft: -20 }}
+                                    />
+                                ) : (
+                                    <code {...props} className={className}>
+                                        {children}
+                                    </code>
+                                );
                             },
                         }}
                     />
