@@ -15,6 +15,7 @@ import { notoSansKR } from '@/styles/fonts/notoSansKR';
 import { marked } from 'marked';
 import TOC from '@/components/TOC';
 import { Heading } from '@/types/heading';
+import Head from 'next/head';
 
 interface Props {
     postData: PostData;
@@ -26,27 +27,38 @@ const Post = (props: Props) => {
     const { postData, postContent, headings } = props;
 
     return (
-        <Container>
-            <BlogPostTitle postData={postData}></BlogPostTitle>
-            <TOC headings={headings} />
-            <div id="content">
-                <ReactMarkdown
-                    rehypePlugins={[rehypeRaw]}
-                    children={postContent}
-                    components={{
-                        h1({ children }) {
-                            return <h1 id={`${children}`}>{children}</h1>;
-                        },
-                        h2({ children }) {
-                            return <h2 id={`${children}`}>{children}</h2>;
-                        },
-                        h3({ children }) {
-                            return <h3 id={`${children}`}>{children}</h3>;
-                        },
-                    }}
+        <>
+            <Head>
+                <title>{postData.title}</title>
+                <meta
+                    property="og:title"
+                    content={postData.title ? postData.title : 'default title'}
                 />
-            </div>
-        </Container>
+                <meta property="og:image" content={postData.thumbnail} />
+                <meta property="og:description" content={postData.summary} />
+            </Head>
+            <Container>
+                <BlogPostTitle postData={postData}></BlogPostTitle>
+                <TOC headings={headings} />
+                <div id="content">
+                    <ReactMarkdown
+                        rehypePlugins={[rehypeRaw]}
+                        children={postContent}
+                        components={{
+                            h1({ children }) {
+                                return <h1 id={`${children}`}>{children}</h1>;
+                            },
+                            h2({ children }) {
+                                return <h2 id={`${children}`}>{children}</h2>;
+                            },
+                            h3({ children }) {
+                                return <h3 id={`${children}`}>{children}</h3>;
+                            },
+                        }}
+                    />
+                </div>
+            </Container>
+        </>
     );
 };
 
