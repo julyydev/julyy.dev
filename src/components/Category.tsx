@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import categories from '@/assets/category';
+import { notoSansKR } from '@/styles/fonts/notoSansKR';
 
 interface Props {
     totalPostNumber: number;
@@ -58,6 +59,7 @@ const CategoryList = styled.ul`
     list-style: none;
     padding: 0;
     margin: 0;
+    font-family: ${notoSansKR.style.fontFamily};
 `;
 
 const CategoryListItem = styled.li`
@@ -75,7 +77,7 @@ const CategoryLink = styled(Link)`
     width: 50%;
 
     &:hover {
-        background-color: #ecb6ff;
+        background-color: #9980fa;
     }
 `;
 
