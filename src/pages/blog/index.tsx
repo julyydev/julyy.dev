@@ -8,7 +8,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { useSearchParams } from 'next/navigation';
 import BlogCategory from '@/components/Category';
-import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 interface Props {
     postDataList: PostData[];
@@ -31,32 +31,42 @@ const Blog = (props: Props) => {
     };
 
     return (
-        <Wrapper>
-            <LeftBox>
-                <BlogCategory totalPostNumber={totalPostNumber} />
-            </LeftBox>
-            <Container>
-                <NoPost>
-                    {!hasCategory(postDataList) && category !== null && (
-                        <div>'{category}' 카테고리에 게시물이 없습니다.</div>
-                    )}
-                </NoPost>
-                <GridContainer>
-                    {postDataList.map(postData => {
-                        if (category === null || postData.category === category)
-                            return (
-                                <StyledLink
-                                    href={`/blog/${postData.slug}`}
-                                    key={postData.slug}
-                                >
-                                    <PostCard postData={postData} />
-                                </StyledLink>
-                            );
-                    })}
-                </GridContainer>
-            </Container>
-            <RightBox />
-        </Wrapper>
+        <>
+            <Head>
+                <title>블로그 | Julyy.dev</title>
+            </Head>
+            <Wrapper>
+                <LeftBox>
+                    <BlogCategory totalPostNumber={totalPostNumber} />
+                </LeftBox>
+                <Container>
+                    <NoPost>
+                        {!hasCategory(postDataList) && category !== null && (
+                            <div>
+                                '{category}' 카테고리에 게시물이 없습니다.
+                            </div>
+                        )}
+                    </NoPost>
+                    <GridContainer>
+                        {postDataList.map(postData => {
+                            if (
+                                category === null ||
+                                postData.category === category
+                            )
+                                return (
+                                    <StyledLink
+                                        href={`/blog/${postData.slug}`}
+                                        key={postData.slug}
+                                    >
+                                        <PostCard postData={postData} />
+                                    </StyledLink>
+                                );
+                        })}
+                    </GridContainer>
+                </Container>
+                <RightBox />
+            </Wrapper>
+        </>
     );
 };
 
