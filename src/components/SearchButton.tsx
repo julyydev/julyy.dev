@@ -1,24 +1,16 @@
 import styled from 'styled-components';
-import SearchIcon from '../assets/svg/icon_search.svg';
-import Image from 'next/image';
+import { SearchIcon } from '../assets/svg';
 import { themedPalette } from '@/styles/themes';
 
 const SearchButton = () => {
     return (
         <IconButton>
-            <StyledImage src={SearchIcon} alt="search" onClick={() => {}} />
+            <SearchIcon width={23} height={23} onClick={() => {}} />
         </IconButton>
     );
 };
 
 export default SearchButton;
-
-const StyledImage = styled(Image)`
-    width: 23px;
-    height: 23px;
-    margin-top: 3px;
-    margin-right: 10px;
-`;
 
 const IconButton = styled.button`
     background: none;

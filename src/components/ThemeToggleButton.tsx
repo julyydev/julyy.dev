@@ -1,10 +1,8 @@
 import { themedPalette } from '@/styles/themes';
 import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
-import MoonIcon from '../assets/svg/icon-moon.svg';
-import SunIcon from '../assets/svg/icon-sun.svg';
+import { SunIcon, MoonIcon } from '../assets/svg';
 import { useState } from 'react';
-import Image from 'next/image';
 
 const ThemeToggleButton = () => {
     const [isDark, setIsDark] = useState(false);
@@ -42,13 +40,13 @@ const ThemeToggleButton = () => {
                 item ? (
                     <Positioner>
                         <AnimatedSVGWrapper style={style}>
-                            <Image src={MoonIcon} alt={'a'} />
+                            <MoonIcon />
                         </AnimatedSVGWrapper>
                     </Positioner>
                 ) : (
                     <Positioner>
                         <AnimatedSVGWrapper style={style}>
-                            <Image src={SunIcon} alt={'a'} />
+                            <SunIcon />
                         </AnimatedSVGWrapper>
                     </Positioner>
                 ),

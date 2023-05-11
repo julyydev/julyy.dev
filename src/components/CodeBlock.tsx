@@ -1,7 +1,6 @@
 import { notoSansKR } from '@/styles/fonts/notoSansKR';
 import styled from 'styled-components';
-import ClipboardIcon from '../assets/svg/icon_clipboard.svg';
-import CheckIcon from '../assets/svg/icon_check.svg';
+import { ClipboardIcon, CheckIcon } from '../assets/svg';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -64,9 +63,9 @@ const TopBar = (props: TopBarProps) => {
             <RightWrapper>
                 <CopyButton onClick={() => handleCopyClipBoard(codeString)}>
                     {isCopied ? (
-                        <Icon src={CheckIcon} alt="clipboard" />
+                        <CheckIcon width={16} height={16} fill="#FFBC2E" />
                     ) : (
-                        <Icon src={ClipboardIcon} alt="clipboard" />
+                        <ClipboardIcon width={16} height={16} fill="#FFBC2E" />
                     )}
                     {isCopied ? (
                         <CopyText>Copied!</CopyText>
