@@ -15,6 +15,8 @@ import Head from 'next/head';
 import CodeBlock from '@/components/CodeBlock';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import Image from 'next/image';
+import ImageBox from '@/components/ImageBox';
 
 interface Props {
     postData: PostData;
@@ -52,6 +54,47 @@ const Post = (props: Props) => {
                             },
                             h3({ children }) {
                                 return <h3 id={`${children}`}>{children}</h3>;
+                            },
+                            p({ node, className, children, ...props }) {
+                                if (
+                                    !('tagName' in node.children[0]) ||
+                                    node.children[0].tagName !== 'img'
+                                ) {
+                                    return (
+                                        <p {...props} className={className}>
+                                            {children}
+                                        </p>
+                                    );
+                                }
+                                const caption =
+                                    node.children[0].properties?.alt !== ''
+                                        ? (node.children[0].properties
+                                              ?.alt as string)
+                                        : null;
+
+                                return (
+                                    <ImageBox caption={caption}>
+                                        {children}
+                                    </ImageBox>
+                                );
+                            },
+                            img({ src, alt }) {
+                                return (
+                                    <Image
+                                        src={src as string}
+                                        alt={alt as string}
+                                        placeholder="blur"
+                                        blurDataURL={src}
+                                        sizes="100vw"
+                                        width={100}
+                                        height={100}
+                                        style={{
+                                            width: 'auto',
+                                            height: 'auto',
+                                            borderRadius: '5px',
+                                        }}
+                                    />
+                                );
                             },
                             pre({ children }) {
                                 return <CodeBlock>{children}</CodeBlock>;
