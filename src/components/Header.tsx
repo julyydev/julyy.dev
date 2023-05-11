@@ -6,12 +6,14 @@ import SearchButton from './SearchButton';
 import { Pacifico } from '@next/font/google';
 import { notoSansKR } from '@/styles/fonts/notoSansKR';
 import useActiveMenu from '@/hooks/useActiveMenu';
+import useScrollTop from '@/hooks/useScrollTop';
 
 const Header = () => {
     const { activeMenu, setActiveMenu } = useActiveMenu();
+    const { isScrollTop } = useScrollTop();
 
     return (
-        <HeaderWrapper>
+        <HeaderWrapper isScrollTop={isScrollTop}>
             <Title>
                 <LogoLink href={'/'} onClick={() => setActiveMenu('')}>
                     Julyy.dev<Beta>βeta</Beta>
@@ -57,18 +59,31 @@ const font = Pacifico({
     display: 'fallback',
 });
 
-const HeaderWrapper = styled.header`
-    background-color: ${themedPalette.bg_page1};
+interface HeaderWrapperProps {
+    isScrollTop: boolean;
+}
+
+const HeaderWrapper = styled.header<HeaderWrapperProps>`
+    background-color: ${themedPalette.opaque_bg_page1};
     color: ${themedPalette.text1};
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    align-items: center;
+    padding: 0px 40px;
     font-family: ${notoSansKR.style.fontFamily};
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(7px);
+    z-index: 100;
+    height: 64px;
+    box-shadow: ${props => {
+        if (!props.isScrollTop) return `0 2px 6px -6px ${themedPalette.text1}`;
+    }};
 `;
 
 const Title = styled.h1`
     font-family: ${font.style.fontFamily};
-    font-size: 30px;
+    font-size: 25px;
     margin: 0;
 `;
 
@@ -95,7 +110,6 @@ interface NavigationItemProps {
 }
 
 const NavigationItem = styled.div<NavigationItemProps>`
-    /* color: ${themedPalette.text1}; */
     color: ${props => {
         if (props.isActive) return '#9980fa';
         else return 'gray';
@@ -103,9 +117,12 @@ const NavigationItem = styled.div<NavigationItemProps>`
     font-size: 16px;
     margin-left: 20px;
     text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
 
     &:hover {
-        color: black;
+        color: ${themedPalette.text1};
         text-decoration: underline;
     }
 `;

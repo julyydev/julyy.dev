@@ -59,14 +59,14 @@ const IconButton = styled.button`
     background: none;
     border: none;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 10px;
     width: 2.5rem;
     height: 2.5rem;
     margin-right: 0.25rem;
-    color: white;
     position: relative;
     &:hover {
         background: ${themedPalette.slight_layer};
+        border: 2px solid ${themedPalette.slight_layer};
     }
 `;
 
@@ -78,7 +78,7 @@ const Positioner = styled.div`
 `;
 
 const SVGWrapper = styled.div`
-    color: ${themedPalette.text1};
+    color: #ffbc2e;
     svg {
         display: block;
     }
