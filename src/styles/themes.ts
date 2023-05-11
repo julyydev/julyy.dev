@@ -1,5 +1,6 @@
 type ThemeVariables = {
     bg_page1: string;
+    opaque_bg_page1: string;
     bg_page2: string;
     bg_element1: string;
     bg_element2: string;
@@ -53,6 +54,7 @@ type ThemedPalette = Record<VariableKey, string>;
 const themeVariableSets: Record<Theme, ThemeVariables> = {
     light: {
         bg_page1: '#F8F9FA',
+        opaque_bg_page1: 'rgba(248, 249, 250, 0.5)',
         bg_page2: '#FFFFFF',
         bg_element1: '#FFFFFF',
         bg_element2: '#F8F9FA',
@@ -100,7 +102,8 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
         prism_line_number: '#585c63',
     },
     dark: {
-        bg_page1: '#121212',
+        bg_page1: '#212529',
+        opaque_bg_page1: 'rgba(33, 37, 41, 0.5)',
         bg_page2: '#121212',
         bg_element1: '#1E1E1E',
         bg_element2: '#1E1E1E',
