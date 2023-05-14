@@ -38,6 +38,7 @@ export default Page;
 
 const Wrapper = styled.div`
     font-family: ${inter.style.fontFamily};
+    width: 100%;
     font-size: 40px;
     display: flex;
     justify-content: center;
