@@ -4,9 +4,9 @@ import ThemeToggleButton from './ThemeToggleButton';
 import { themedPalette } from '@/styles/themes';
 import SearchButton from './SearchButton';
 import { Pacifico } from '@next/font/google';
-import { notoSansKR } from '@/styles/fonts/notoSansKR';
 import useActiveMenu from '@/hooks/useActiveMenu';
 import useScrollTop from '@/hooks/useScrollTop';
+import manrope from '@/styles/fonts/manrope';
 
 const Header = () => {
     const { activeMenu, setActiveMenu } = useActiveMenu();
@@ -70,8 +70,10 @@ const HeaderWrapper = styled.header<HeaderWrapperProps>`
     justify-content: space-between;
     align-items: center;
     padding: 0px 40px;
-    font-family: ${notoSansKR.style.fontFamily};
-    position: sticky;
+    font-family: ${manrope.normal.style.fontFamily};
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
     top: 0;
     backdrop-filter: blur(7px);
     z-index: 100;

@@ -17,6 +17,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Image from 'next/image';
 import ImageBox from '@/components/ImageBox';
+import SideMenu from '@/components/SideMenu';
 
 interface Props {
     postData: PostData;
@@ -38,6 +39,7 @@ const Post = (props: Props) => {
                 <meta property="og:image" content={postData.thumbnail} />
                 <meta property="og:description" content={postData.summary} />
             </Head>
+            <SideMenu />
             <Container>
                 <BlogPostTitle postData={postData}></BlogPostTitle>
                 <TOC headings={headings} />

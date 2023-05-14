@@ -7,8 +7,8 @@ import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useSearchParams } from 'next/navigation';
-import BlogCategory from '@/components/Category';
 import Head from 'next/head';
+import SideMenu from '@/components/SideMenu';
 
 interface Props {
     postDataList: PostData[];
@@ -35,37 +35,27 @@ const Blog = (props: Props) => {
             <Head>
                 <title>블로그 | Julyy.dev</title>
             </Head>
-            <Wrapper>
-                <LeftBox>
-                    <BlogCategory totalPostNumber={totalPostNumber} />
-                </LeftBox>
-                <Container>
-                    <NoPost>
-                        {!hasCategory(postDataList) && category !== null && (
-                            <div>
-                                '{category}' 카테고리에 게시물이 없습니다.
-                            </div>
-                        )}
-                    </NoPost>
-                    <GridContainer>
-                        {postDataList.map(postData => {
-                            if (
-                                category === null ||
-                                postData.category === category
-                            )
-                                return (
-                                    <StyledLink
-                                        href={`/blog/${postData.slug}`}
-                                        key={postData.slug}
-                                    >
-                                        <PostCard postData={postData} />
-                                    </StyledLink>
-                                );
-                        })}
-                    </GridContainer>
-                </Container>
-                <RightBox />
-            </Wrapper>
+            <SideMenu />
+            <Container>
+                <NoPost>
+                    {!hasCategory(postDataList) && category !== null && (
+                        <div>'{category}' 카테고리에 게시물이 없습니다.</div>
+                    )}
+                </NoPost>
+                <GridContainer>
+                    {postDataList.map(postData => {
+                        if (category === null || postData.category === category)
+                            return (
+                                <StyledLink
+                                    href={`/blog/${postData.slug}`}
+                                    key={postData.slug}
+                                >
+                                    <PostCard postData={postData} />
+                                </StyledLink>
+                            );
+                    })}
+                </GridContainer>
+            </Container>
         </>
     );
 };
@@ -87,20 +77,6 @@ export const getStaticProps: GetStaticProps = async () => {
     return { props: { postDataList, totalPostNumber } };
 };
 
-const Wrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-
-const LeftBox = styled.div`
-    width: 15%;
-    /* background-color: pink; */
-`;
-
-const RightBox = styled.div`
-    width: 15%;
-`;
-
 const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -109,6 +85,7 @@ const GridContainer = styled.div`
 `;
 
 const Container = styled.div`
+    margin: 0 15%;
     width: 70%;
 `;
 

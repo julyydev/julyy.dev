@@ -1,6 +1,9 @@
 import { PostData } from '@/types/post';
 import styled from 'styled-components';
 import Image from 'next/image';
+import nanumGothic from '@/styles/fonts/nanumGothic';
+import CategoryLabel from './CategoryLabel';
+import { themedPalette } from '@/styles/themes';
 
 interface Props {
     postData: PostData;
@@ -29,7 +32,7 @@ const PostCard = (props: Props) => {
                 <Title>{postData.title}</Title>
                 <Summary>{postData.summary}</Summary>
                 <Meta>
-                    <Category>{postData.category}</Category>
+                    <CategoryLabel text={postData.category} />
                     {postData.series && <Series>{postData.series}</Series>}
                     {postData.tag.map(tag => (
                         <Tag key={tag}>{tag}</Tag>
@@ -50,6 +53,7 @@ const CardContainer = styled.div`
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 90%;
+    font-family: ${nanumGothic.normal.style.fontFamily};
 `;
 
 const Thumbnail = styled.div`
@@ -67,6 +71,7 @@ const CardContent = styled.div`
 
 const Title = styled.h2`
     font-size: 24px;
+    font-family: ${nanumGothic.bold.style.fontFamily};
     margin: 0;
 `;
 
@@ -103,4 +108,5 @@ const Tag = styled(Category)`
 const Date = styled.span`
     margin-left: auto;
     font-size: 14px;
+    color: ${themedPalette.text3};
 `;

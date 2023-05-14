@@ -6,3 +6,9 @@ declare module '*.svg' {
     const src: string;
     export default ReactComponent;
 }
+
+declare module '*.png' {
+    const content: import('../dist/client/image').StaticImageData;
+
+    export default content;
+}
