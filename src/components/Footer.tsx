@@ -1,10 +1,12 @@
+import manrope from '@/styles/fonts/manrope';
 import { themedPalette } from '@/styles/themes';
 import styled from 'styled-components';
+import Divider from './common/Divider';
 
 const Footer = () => {
     return (
         <Wrapper>
-            <Divider />
+            <Divider width="70%" />
             <CopyRight>© 2023 Julyy, All Rights Reserved.</CopyRight>
         </Wrapper>
     );
@@ -12,20 +14,16 @@ const Footer = () => {
 
 const Wrapper = styled.div`
     display: flex;
+    height: 60px;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
-`;
-
-const Divider = styled.hr`
-    margin-top: 500px;
-    width: 80%;
-    height: 1px;
-    background-color: black;
-    border: 0;
+    padding: 20px;
 `;
 
 const CopyRight = styled.div`
-    color: ${themedPalette.text1};
+    font-family: ${manrope.normal.style.fontFamily};
+    color: ${themedPalette.text3};
 `;
 
 export default Footer;
