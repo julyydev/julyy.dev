@@ -12,6 +12,7 @@ import Pagination from '@/components/Pagination';
 import useBlogQuery from '@/hooks/useBlogQuery';
 import { numberPagesViewOneTime } from '@/constants/page';
 import Spinner from '@/components/common/Spinner';
+import manrope from '@/styles/fonts/manrope';
 
 interface Props {
     postDataList: PostData[];
@@ -40,9 +41,7 @@ const Blog = (props: Props) => {
                     <>
                         {filteredPostDataList.length === 0 ? (
                             <NoPost>
-                                <div>
-                                    '{category}' 카테고리에 게시물이 없습니다.
-                                </div>
+                                '{category}' 카테고리에 게시물이 없습니다.
                             </NoPost>
                         ) : (
                             <>
@@ -114,4 +113,5 @@ const NoPost = styled.div`
     display: flex;
     justify-content: center;
     font-size: 20px;
+    font-family: ${manrope.normal.style.fontFamily};
 `;
