@@ -1,4 +1,4 @@
-import { GetStaticProps, GetStaticPropsContext } from 'next';
+import { GetStaticProps } from 'next';
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
@@ -6,9 +6,13 @@ import { PostData } from '@/types/post';
 import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { useSearchParams } from 'next/navigation';
 import Head from 'next/head';
 import SideMenu from '@/components/SideMenu';
+import Pagination from '@/components/Pagination';
+import useBlogQuery from '@/hooks/useBlogQuery';
+import { numberPagesViewOneTime } from '@/constants/page';
+import Spinner from '@/components/common/Spinner';
+import manrope from '@/styles/fonts/manrope';
 
 interface Props {
     postDataList: PostData[];
@@ -17,18 +21,12 @@ interface Props {
 
 const Blog = (props: Props) => {
     const { postDataList, totalPostNumber } = props;
-    const searchParams = useSearchParams();
-    const category = searchParams.get('category');
+    const { category, page, isLoading } = useBlogQuery();
 
-    const hasCategory = (postDataList: PostData[]) => {
-        let hasCategory = false;
-        postDataList.forEach(postData => {
-            if (postData.category === category) {
-                hasCategory = true;
-            }
-        });
-        return hasCategory;
-    };
+    const filteredPostDataList = postDataList.filter(postData => {
+        if (category === '') return true;
+        return postData.category === category;
+    });
 
     return (
         <>
@@ -37,24 +35,39 @@ const Blog = (props: Props) => {
             </Head>
             <SideMenu />
             <Container>
-                <NoPost>
-                    {!hasCategory(postDataList) && category !== null && (
-                        <div>'{category}' 카테고리에 게시물이 없습니다.</div>
-                    )}
-                </NoPost>
-                <GridContainer>
-                    {postDataList.map(postData => {
-                        if (category === null || postData.category === category)
-                            return (
-                                <StyledLink
-                                    href={`/blog/${postData.slug}`}
-                                    key={postData.slug}
-                                >
-                                    <PostCard postData={postData} />
-                                </StyledLink>
-                            );
-                    })}
-                </GridContainer>
+                {isLoading ? (
+                    <Spinner />
+                ) : (
+                    <>
+                        {filteredPostDataList.length === 0 ? (
+                            <NoPost>
+                                '{category}' 카테고리에 게시물이 없습니다.
+                            </NoPost>
+                        ) : (
+                            <>
+                                <GridContainer>
+                                    {filteredPostDataList
+                                        .slice(
+                                            numberPagesViewOneTime * (page - 1),
+                                            numberPagesViewOneTime * page,
+                                        )
+                                        .map(postData => (
+                                            <StyledLink
+                                                key={postData.slug}
+                                                href={`/blog/${postData.slug}`}
+                                            >
+                                                <PostCard postData={postData} />
+                                            </StyledLink>
+                                        ))}
+                                </GridContainer>
+                                <Pagination
+                                    postNumber={filteredPostDataList.length}
+                                    currentPage={page}
+                                />
+                            </>
+                        )}
+                    </>
+                )}
             </Container>
         </>
     );
@@ -87,6 +100,9 @@ const GridContainer = styled.div`
 const Container = styled.div`
     margin: 0 15%;
     width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 const StyledLink = styled(Link)`
@@ -97,4 +113,5 @@ const NoPost = styled.div`
     display: flex;
     justify-content: center;
     font-size: 20px;
+    font-family: ${manrope.normal.style.fontFamily};
 `;
