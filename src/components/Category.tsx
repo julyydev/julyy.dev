@@ -14,32 +14,30 @@ const BlogCategory = ({ totalPostNumber }: Props) => {
     const { activeCategory, setActiveCategory } = useActiveCategory();
 
     return (
-        <CategoryList>
-            <CategoryLink
+        <Wrapper>
+            <NoDecorationLink
                 href={{
                     pathname: '/blog',
                 }}
                 onClick={() => setActiveCategory(null)}
             >
-                All ({totalPostNumber})
-            </CategoryLink>
+                <CategoryWrapper isActive={false}>
+                    All ({totalPostNumber})
+                </CategoryWrapper>
+            </NoDecorationLink>
             {categories.map(category => (
                 <div key={category.name}>
-                    <MainCategory>
+                    <LargeCategory>
                         <StyledListIcon
                             width={10}
                             height={10}
                             fill={themedPalette.text3}
                         />
                         {category.name}
-                    </MainCategory>
+                    </LargeCategory>
                     {category.subCategories?.map(subCategory => (
                         <CategoryListItem key={subCategory.name}>
-                            <CategoryLink
-                                isActive={
-                                    activeCategory ===
-                                    subCategory.name.toLowerCase()
-                                }
+                            <NoDecorationLink
                                 href={{
                                     pathname: '/blog',
                                     query: {
@@ -53,7 +51,7 @@ const BlogCategory = ({ totalPostNumber }: Props) => {
                                     )
                                 }
                             >
-                                <SubCategoryWrapper
+                                <CategoryWrapper
                                     isActive={
                                         activeCategory ===
                                         subCategory.name.toLowerCase()
@@ -70,19 +68,19 @@ const BlogCategory = ({ totalPostNumber }: Props) => {
                                         </Icon>
                                     )}
                                     {subCategory.name}
-                                </SubCategoryWrapper>
-                            </CategoryLink>
+                                </CategoryWrapper>
+                            </NoDecorationLink>
                         </CategoryListItem>
                     ))}
                 </div>
             ))}
-        </CategoryList>
+        </Wrapper>
     );
 };
 
 export default BlogCategory;
 
-const CategoryList = styled.div`
+const Wrapper = styled.div`
     list-style: none;
     margin: 0;
     font-family: ${manrope.normal.style.fontFamily};
@@ -90,7 +88,7 @@ const CategoryList = styled.div`
     left: 0;
 `;
 
-const MainCategory = styled.div`
+const LargeCategory = styled.div`
     font-size: 13px;
     color: ${themedPalette.text3};
     margin-left: 20px;
@@ -98,31 +96,21 @@ const MainCategory = styled.div`
     margin-bottom: 5px;
 `;
 
-interface ActiveProps {
-    isActive?: boolean;
+interface CategoryWrapperProps {
+    isActive: boolean;
 }
 
-const SubCategoryWrapper = styled.div<ActiveProps>`
+const CategoryWrapper = styled.div<CategoryWrapperProps>`
     display: flex;
     align-items: center;
+    width: 100%;
+    padding: 2px 10px;
+    border-radius: 7px;
+    font-size: 15px;
     color: ${props => {
         if (props.isActive) return '#9980fa';
-        else return 'inherit';
+        else return themedPalette.text1;
     }};
-    transition: color 0.3s;
-`;
-
-const CategoryListItem = styled.li`
-    margin-bottom: 10px;
-`;
-
-const CategoryLink = styled(Link)<ActiveProps>`
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: ${themedPalette.text1};
-    padding: 2px 10px;
-    border-radius: 5px;
     background-color: ${props => {
         if (props.isActive) return '#e4deff';
     }};
@@ -130,14 +118,21 @@ const CategoryLink = styled(Link)<ActiveProps>`
         if (props.isActive) return '#9980fa';
         else return themedPalette.text3;
     }};
-    transition: color 0.3s ease background-color 0.3s ease;
-    font-size: 15px;
 
     &:hover {
         background-color: #e4deff;
         color: #9980fa;
         fill: #9980fa;
     }
+`;
+
+const CategoryListItem = styled.div`
+    margin-bottom: 10px;
+`;
+
+const NoDecorationLink = styled(Link)`
+    display: flex;
+    text-decoration: none;
 `;
 
 const Icon = styled.div`
