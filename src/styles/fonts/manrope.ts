@@ -1,4 +1,4 @@
-import { Manrope } from '@next/font/google';
+import { Manrope } from 'next/font/google';
 
 const normal = Manrope({
     weight: '400',
