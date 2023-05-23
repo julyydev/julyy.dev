@@ -21,7 +21,7 @@ const BlogCategory = ({ totalPostNumber }: Props) => {
                 }}
                 onClick={() => setActiveCategory(null)}
             >
-                <CategoryWrapper isActive={false}>
+                <CategoryWrapper $isActive={false}>
                     All ({totalPostNumber})
                 </CategoryWrapper>
             </NoDecorationLink>
@@ -52,7 +52,7 @@ const BlogCategory = ({ totalPostNumber }: Props) => {
                                 }
                             >
                                 <CategoryWrapper
-                                    isActive={
+                                    $isActive={
                                         activeCategory ===
                                         subCategory.name.toLowerCase()
                                     }
@@ -97,7 +97,7 @@ const LargeCategory = styled.div`
 `;
 
 interface CategoryWrapperProps {
-    isActive: boolean;
+    $isActive: boolean;
 }
 
 const CategoryWrapper = styled.div<CategoryWrapperProps>`
@@ -108,14 +108,14 @@ const CategoryWrapper = styled.div<CategoryWrapperProps>`
     border-radius: 7px;
     font-size: 15px;
     color: ${props => {
-        if (props.isActive) return '#9980fa';
+        if (props.$isActive) return '#9980fa';
         else return themedPalette.text1;
     }};
     background-color: ${props => {
-        if (props.isActive) return '#e4deff';
+        if (props.$isActive) return '#e4deff';
     }};
     fill: ${props => {
-        if (props.isActive) return '#9980fa';
+        if (props.$isActive) return '#9980fa';
         else return themedPalette.text3;
     }};
 

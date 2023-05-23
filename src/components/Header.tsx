@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ThemeToggleButton from './ThemeToggleButton';
 import { themedPalette } from '@/styles/themes';
 import SearchButton from './SearchButton';
-import { Pacifico } from '@next/font/google';
+import { Pacifico } from 'next/font/google';
 import useActiveMenu from '@/hooks/useActiveMenu';
 import useScrollTop from '@/hooks/useScrollTop';
 import manrope from '@/styles/fonts/manrope';
@@ -13,7 +13,7 @@ const Header = () => {
     const { isScrollTop } = useScrollTop();
 
     return (
-        <HeaderWrapper isScrollTop={isScrollTop}>
+        <HeaderWrapper $isScrollTop={isScrollTop}>
             <Title>
                 <LogoLink href={'/'} onClick={() => setActiveMenu('')}>
                     Julyy.dev<Beta>βeta</Beta>
@@ -22,7 +22,7 @@ const Header = () => {
             <Navigation>
                 <SearchButton />
                 <ThemeToggleButton />
-                <NavigationItem isActive={activeMenu === 'blog'}>
+                <NavigationItem $isActive={activeMenu === 'blog'}>
                     <MenuLink
                         href="/blog"
                         onClick={() => setActiveMenu('blog')}
@@ -30,7 +30,7 @@ const Header = () => {
                         Blog
                     </MenuLink>
                 </NavigationItem>
-                <NavigationItem isActive={activeMenu === 'projects'}>
+                <NavigationItem $isActive={activeMenu === 'projects'}>
                     <MenuLink
                         href="/projects"
                         onClick={() => setActiveMenu('projects')}
@@ -38,7 +38,7 @@ const Header = () => {
                         Projects
                     </MenuLink>
                 </NavigationItem>
-                <NavigationItem isActive={activeMenu === 'about'}>
+                <NavigationItem $isActive={activeMenu === 'about'}>
                     <MenuLink
                         href="/about"
                         onClick={() => setActiveMenu('about')}
@@ -60,7 +60,7 @@ const font = Pacifico({
 });
 
 interface HeaderWrapperProps {
-    isScrollTop: boolean;
+    $isScrollTop: boolean;
 }
 
 const HeaderWrapper = styled.header<HeaderWrapperProps>`
@@ -79,7 +79,7 @@ const HeaderWrapper = styled.header<HeaderWrapperProps>`
     z-index: 100;
     height: 64px;
     box-shadow: ${props => {
-        if (!props.isScrollTop) return `0 2px 6px -6px ${themedPalette.text1}`;
+        if (!props.$isScrollTop) return `0 2px 6px -6px ${themedPalette.text1}`;
     }};
 `;
 
@@ -108,12 +108,12 @@ const Navigation = styled.nav`
 `;
 
 interface NavigationItemProps {
-    isActive: boolean;
+    $isActive: boolean;
 }
 
 const NavigationItem = styled.div<NavigationItemProps>`
     color: ${props => {
-        if (props.isActive) return '#9980fa';
+        if (props.$isActive) return '#9980fa';
         else return 'gray';
     }};
     font-size: 16px;

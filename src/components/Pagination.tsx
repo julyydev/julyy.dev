@@ -7,16 +7,17 @@ import {
 import { numberPagesViewOneTime } from '@/constants/page';
 import manrope from '@/styles/fonts/manrope';
 import { themedPalette } from '@/styles/themes';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 interface Props {
+    category: string;
     postNumber: number;
     currentPage: number;
 }
 
 const Pagination = (props: Props) => {
-    const { postNumber, currentPage } = props;
+    const { category, postNumber, currentPage } = props;
     const pageNumbers: number[] = Array.from(
         { length: (postNumber - 1) / numberPagesViewOneTime + 1 },
         (_, index) => index + 1,
@@ -28,23 +29,15 @@ const Pagination = (props: Props) => {
         else return currentPage !== pageNumbers.length;
     };
 
-    const removePageParams = () => {
-        const obj = { ...router.query };
-        const { page, ...newObj } = obj;
-        return newObj;
-    };
-
     const navigate = (targetPage: number) => {
-        if (targetPage == 1)
-            router.replace({
-                pathname: '/blog',
-                query: removePageParams(),
-            });
-        else
-            router.replace({
-                pathname: '/blog',
-                query: { ...router.query, page: targetPage },
-            });
+        if (targetPage == 1) {
+            if (category === '') router.replace('/blog');
+            else router.replace(`/blog?category=${category}`);
+        } else {
+            if (category === '') router.replace(`/blog?page=${targetPage}`);
+            else
+                router.replace(`/blog?category=${category}&page=${targetPage}`);
+        }
     };
 
     const handleAngleClick =
@@ -164,7 +157,7 @@ const PageNumber = styled.div<PageNumberProps>`
 `;
 
 interface IconProps {
-    isAbled: boolean;
+    $isAbled: boolean;
 }
 
 const Icon = styled.div<IconProps>`
@@ -175,19 +168,19 @@ const Icon = styled.div<IconProps>`
     width: 25px;
     height: 25px;
     fill: ${props => {
-        if (props.isAbled) return themedPalette.text3;
+        if (props.$isAbled) return themedPalette.text3;
         else return themedPalette.bg_element4;
     }};
 
     :hover {
         cursor: ${props => {
-            if (props.isAbled) return 'pointer';
+            if (props.$isAbled) return 'pointer';
         }};
         background-color: ${props => {
-            if (props.isAbled) return '#e4deff';
+            if (props.$isAbled) return '#e4deff';
         }};
         fill: ${props => {
-            if (props.isAbled) return '#9980fa';
+            if (props.$isAbled) return '#9980fa';
         }};
     }
 `;
@@ -212,7 +205,7 @@ interface IconWrapperProps {
 const IconWrapper = (props: IconWrapperProps) => {
     const { children, isAbled } = props;
     return (
-        <Icon isAbled={isAbled}>
+        <Icon $isAbled={isAbled}>
             <Positioner>{children}</Positioner>
         </Icon>
     );
