@@ -149,7 +149,7 @@ const PageNumber = styled.div<PageNumberProps>`
         else return themedPalette.text3;
     }};
 
-    :hover {
+    &:hover {
         cursor: pointer;
         background-color: #e4deff;
         color: #9980fa;
@@ -172,7 +172,7 @@ const Icon = styled.div<IconProps>`
         else return themedPalette.bg_element4;
     }};
 
-    :hover {
+    &:hover {
         cursor: ${props => {
             if (props.$isAbled) return 'pointer';
         }};
