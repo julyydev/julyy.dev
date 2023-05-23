@@ -1,21 +1,9 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import {
-    Inter,
-    Nanum_Brush_Script,
-    Nanum_Gothic_Coding,
-} from '@next/font/google';
-import type { NextPageWithLayout } from './_app';
+'use client';
 import TypeIt from 'typeit-react';
 import styled from 'styled-components';
+import { Nanum_Brush_Script } from 'next/font/google';
 
-const inter = Nanum_Brush_Script({
-    weight: '400',
-    subsets: ['latin'],
-    display: 'fallback',
-});
-
-const Page: NextPageWithLayout = () => {
+const Page = () => {
     return (
         <Wrapper>
             <TypeIt
@@ -36,10 +24,16 @@ const Page: NextPageWithLayout = () => {
 
 export default Page;
 
+const inter = Nanum_Brush_Script({
+    weight: '400',
+    subsets: ['latin'],
+    display: 'fallback',
+});
+
 const Wrapper = styled.div`
-    font-family: ${inter.style.fontFamily};
     width: 100%;
     font-size: 40px;
     display: flex;
     justify-content: center;
+    font-family: ${inter.style.fontFamily};
 `;

@@ -1,11 +1,13 @@
-import { ReactElement } from 'react';
-import Footer from '../Footer';
-import Header from '../Header';
-import styled from 'styled-components';
+'use client';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import GlobalStyles from '@/styles/globalStyles';
+import { styled } from 'styled-components';
 
-const MainLayout = ({ children }: { children: ReactElement }) => {
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
+            <GlobalStyles />
             <Header />
             <Wrapper>{children}</Wrapper>
             <Footer />

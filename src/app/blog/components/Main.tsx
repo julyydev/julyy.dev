@@ -1,26 +1,21 @@
-import { GetStaticProps } from 'next';
-import path from 'path';
-import fs from 'fs';
-import matter from 'gray-matter';
-import { PostData } from '@/types/post';
-import PostCard from '@/components/PostCard';
+'use client';
+import manrope from '@/styles/fonts/manrope';
 import Link from 'next/link';
-import styled from 'styled-components';
-import Head from 'next/head';
+import { styled } from 'styled-components';
 import SideMenu from '@/components/SideMenu';
+import Spinner from '@/components/common/Spinner';
+import PostCard from '@/components/PostCard';
 import Pagination from '@/components/Pagination';
 import useBlogQuery from '@/hooks/useBlogQuery';
 import { numberPagesViewOneTime } from '@/constants/page';
-import Spinner from '@/components/common/Spinner';
-import manrope from '@/styles/fonts/manrope';
+import { PostData } from '@/types/post';
 
 interface Props {
     postDataList: PostData[];
-    totalPostNumber: number;
 }
 
-const Blog = (props: Props) => {
-    const { postDataList, totalPostNumber } = props;
+const Main = (props: Props) => {
+    const { postDataList } = props;
     const { category, page, isLoading } = useBlogQuery();
 
     const filteredPostDataList = postDataList.filter(postData => {
@@ -30,9 +25,6 @@ const Blog = (props: Props) => {
 
     return (
         <>
-            <Head>
-                <title>블로그 | Julyy.dev</title>
-            </Head>
             <SideMenu />
             <Container>
                 {isLoading ? (
@@ -61,6 +53,7 @@ const Blog = (props: Props) => {
                                         ))}
                                 </GridContainer>
                                 <Pagination
+                                    category={category}
                                     postNumber={filteredPostDataList.length}
                                     currentPage={page}
                                 />
@@ -73,22 +66,7 @@ const Blog = (props: Props) => {
     );
 };
 
-export default Blog;
-
-export const getStaticProps: GetStaticProps = async () => {
-    const postsDirectory = path.join(process.cwd(), 'src/assets/md');
-    let totalPostNumber = 0;
-
-    const files = fs.readdirSync(postsDirectory);
-    const postDataList = files.map(file => {
-        const rawMD = fs.readFileSync(postsDirectory + '/' + file, 'utf8');
-        const processedMD = matter(rawMD);
-        totalPostNumber++;
-        return processedMD.data;
-    });
-
-    return { props: { postDataList, totalPostNumber } };
-};
+export default Main;
 
 const GridContainer = styled.div`
     display: grid;

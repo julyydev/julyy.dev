@@ -1,4 +1,4 @@
-import { Nanum_Gothic } from '@next/font/google';
+import { Nanum_Gothic } from 'next/font/google';
 
 const normal = Nanum_Gothic({
     weight: '400',
