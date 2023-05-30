@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ClipboardIcon, CheckIcon } from '../assets/svg';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { themedPalette } from '@/styles/themes';
 
 interface Props {
     children: any;
@@ -80,6 +81,8 @@ const TopBar = (props: TopBarProps) => {
 
 const Wrapper = styled.pre`
     font-family: ${notoSansKR.style.fontFamily};
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
 `;
 
 const CodeWrapper = styled.div`
@@ -90,7 +93,7 @@ const CodeWrapper = styled.div`
 `;
 
 const TopBarWrapper = styled.div`
-    background-color: #393b46;
+    background-color: ${themedPalette.code_block_wrapper};
     width: 100%;
     height: 40px;
     margin-bottom: -12px;

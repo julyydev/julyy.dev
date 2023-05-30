@@ -2,10 +2,11 @@ import { themedPalette } from '@/styles/themes';
 import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
 import { SunIcon, MoonIcon } from '../assets/svg';
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { isDarkState } from '@/recoil/theme';
 
 const ThemeToggleButton = () => {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useRecoilState(isDarkState);
     const toggleTheme = () => {
         if (document.querySelector('body')?.dataset.theme === 'dark')
             document.querySelector('body')?.setAttribute('data-theme', 'light');
