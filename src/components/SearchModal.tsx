@@ -35,7 +35,6 @@ const SearchModal = (props: Props) => {
 
         if (selectedItem) {
             selectedItem.scrollIntoView({
-                behavior: 'instant',
                 block: 'center',
             });
         }
