@@ -17,6 +17,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
                         <MainLayout>{children}</MainLayout>
                     </StyledComponentsRegistry>
                 </Recoil>
+                <div id="portal"></div>
             </body>
         </html>
     );
