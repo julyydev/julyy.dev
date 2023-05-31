@@ -1,7 +1,6 @@
 'use client';
 import ImageBox from '@/components/ImageBox';
 import BlogPostTitle from '@/components/PostTitle';
-import SideMenu from '@/components/SideMenu';
 import TOC from '@/components/TOC';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -37,7 +36,6 @@ const Main = (props: Props) => {
 
     return (
         <>
-            <SideMenu />
             <Container>
                 <BlogPostTitle postData={postData}></BlogPostTitle>
                 <TOC headings={headings} />

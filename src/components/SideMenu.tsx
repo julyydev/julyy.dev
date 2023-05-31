@@ -1,10 +1,17 @@
+'use client';
 import styled from 'styled-components';
 import Profile from './Profile';
-import BlogCategory from './Category';
+import Category from './Category';
 import { EmailIcon, GithubIcon } from '@/assets/svg';
 import Divider from './common/Divider';
 
-const SideMenu = () => {
+interface Props {
+    totalPostNumber: number;
+}
+
+const SideMenu = (props: Props) => {
+    const { totalPostNumber } = props;
+
     return (
         <Wrapper>
             <Profile />
@@ -17,7 +24,7 @@ const SideMenu = () => {
                 </IconWrapper>
             </SNS>
             <Divider width="100%" />
-            <BlogCategory />
+            <Category totalPostNumber={totalPostNumber} />
         </Wrapper>
     );
 };
