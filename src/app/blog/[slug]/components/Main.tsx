@@ -18,6 +18,7 @@ import { PostData } from '@/types/post';
 import { Heading } from '@/types/heading';
 import { useRecoilValue } from 'recoil';
 import { isDarkState } from '@/recoil/theme';
+import Comments from '@/components/Comments';
 
 interface Props {
     postData: PostData;
@@ -130,6 +131,7 @@ const Main = (props: Props) => {
                         }}
                     />
                 </div>
+                <Comments />
             </Container>
         </>
     );
