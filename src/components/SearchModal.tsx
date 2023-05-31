@@ -8,6 +8,7 @@ import nanumGothic from '@/styles/fonts/nanumGothic';
 import { PostData } from '@/types/post';
 import SearchResultPost from './SearchResultPost';
 import { useRouter } from 'next/navigation';
+import Keyboard from './common/Keyboard';
 
 interface Props {
     postDataList: PostData[];
@@ -109,9 +110,16 @@ const SearchModal = (props: Props) => {
             </SearchResult>
             <Divider width="95%" color={themedPalette.text4} />
             <InformationWrapper>
-                <Information>Enter 선택</Information>
-                <Information>Up/Down 이동</Information>
-                <Information>ESC 닫기</Information>
+                <Information>
+                    <Keyboard>⏎</Keyboard> 선택
+                </Information>
+                <Information>
+                    <Keyboard>↑</Keyboard>
+                    <Keyboard>↓</Keyboard> 이동
+                </Information>
+                <Information>
+                    <Keyboard>esc</Keyboard> 닫기
+                </Information>
             </InformationWrapper>
         </Wrapper>
     );
@@ -136,7 +144,7 @@ const SearchBox = styled.div`
     background-color: ${themedPalette.input};
     width: 90%;
     margin: 15px 0px;
-    border-radius: 20px;
+    border-radius: 50px;
 `;
 
 const SearchInput = styled.input`
