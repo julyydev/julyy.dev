@@ -72,10 +72,10 @@ const Pagination = (props: Props) => {
                 {pageNumbers.map(pageNumber => (
                     <PageNumberWrapper
                         key={`page_number_${pageNumber}`}
-                        isActive={pageNumber === currentPage}
+                        $isActive={pageNumber === currentPage}
                     >
                         <PageNumber
-                            isActive={pageNumber === currentPage}
+                            $isActive={pageNumber === currentPage}
                             onClick={() => navigate(pageNumber)}
                         >
                             {pageNumber}
@@ -126,13 +126,13 @@ const PageNumbers = styled.div`
 `;
 
 interface PageNumberProps {
-    isActive: boolean;
+    $isActive: boolean;
 }
 
 const PageNumberWrapper = styled.div<PageNumberProps>`
     margin: 0px 10px;
     border-bottom: ${props => {
-        if (props.isActive) return '2px solid #9980fa';
+        if (props.$isActive) return '2px solid #9980fa';
     }};
 `;
 
@@ -145,7 +145,7 @@ const PageNumber = styled.div<PageNumberProps>`
     border-radius: 50%;
     font-family: ${manrope.normal.style.fontFamily};
     color: ${props => {
-        if (props.isActive) return '#9980fa';
+        if (props.$isActive) return '#9980fa';
         else return themedPalette.text3;
     }};
 
