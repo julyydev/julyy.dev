@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import MainLayout from '@/components/layouts/MainLayout';
-import StyledComponentsRegistry from '@/lib/styled-components/registry';
+import StyledComponentsRegistry from '@/lib/registry/styledComponents';
+import Recoil from '@/lib/registry/recoil';
 
 export const metadata: Metadata = {
     title: 'Julyy.dev',
@@ -11,9 +12,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
             <body>
-                <StyledComponentsRegistry>
-                    <MainLayout>{children}</MainLayout>
-                </StyledComponentsRegistry>
+                <Recoil>
+                    <StyledComponentsRegistry>
+                        <MainLayout>{children}</MainLayout>
+                    </StyledComponentsRegistry>
+                </Recoil>
+                <div id="portal"></div>
             </body>
         </html>
     );

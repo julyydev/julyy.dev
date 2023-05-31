@@ -8,11 +8,16 @@ import rehypeRaw from 'rehype-raw';
 import Image from 'next/image';
 import CodeBlock from '@/components/CodeBlock';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import {
+    oneLight,
+    oneDark,
+} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { styled } from 'styled-components';
 import { notoSansKR } from '@/styles/fonts/notoSansKR';
 import { PostData } from '@/types/post';
 import { Heading } from '@/types/heading';
+import { useRecoilValue } from 'recoil';
+import { isDarkState } from '@/recoil/theme';
 
 interface Props {
     postData: PostData;
@@ -22,6 +27,13 @@ interface Props {
 
 const Main = (props: Props) => {
     const { postData, postContent, headings } = props;
+
+    const isDark = useRecoilValue(isDarkState);
+    const codeTheme = () => {
+        if (isDark) return oneDark;
+        else return oneLight;
+    };
+
     return (
         <>
             <SideMenu />
@@ -103,7 +115,7 @@ const Main = (props: Props) => {
                                             /\n$/,
                                             '',
                                         )}
-                                        style={oneDark}
+                                        style={codeTheme()}
                                         language={match[1]}
                                         PreTag="div"
                                         showLineNumbers

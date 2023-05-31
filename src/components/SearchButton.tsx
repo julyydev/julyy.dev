@@ -1,21 +1,41 @@
+'use client';
 import styled from 'styled-components';
 import { SearchIcon } from '../assets/svg';
 import { themedPalette } from '@/styles/themes';
+import useModal from '@/hooks/useModal';
+import Modal from './common/Modal';
+import SearchModal from './SearchModal';
+import { PostData } from '@/types/post';
 
-const SearchButton = () => {
+interface Props {
+    postDataList: PostData[];
+}
+
+const SearchButton = (props: Props) => {
+    const { postDataList } = props;
+    const { isModalOpen, handleModalToggle } = useModal();
+
     return (
-        <IconButton>
-            <Positioner>
-                <SVGWrapper>
-                    <SearchIcon
-                        width={21}
-                        height={21}
-                        fill={themedPalette.text1}
-                        onClick={() => {}}
-                    />
-                </SVGWrapper>
-            </Positioner>
-        </IconButton>
+        <>
+            <IconButton onClick={handleModalToggle}>
+                <Positioner>
+                    <SVGWrapper>
+                        <SearchIcon
+                            width={21}
+                            height={21}
+                            fill={themedPalette.text1}
+                            onClick={() => {}}
+                        />
+                    </SVGWrapper>
+                </Positioner>
+            </IconButton>
+            <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
+                <SearchModal
+                    postDataList={postDataList}
+                    onClose={handleModalToggle}
+                />
+            </Modal>
+        </>
     );
 };
 
@@ -29,7 +49,10 @@ const IconButton = styled.button`
     width: 2.5rem;
     height: 2.5rem;
     margin-right: 0.25rem;
-    position: relative;
+    position: fixed;
+    top: 12px;
+    z-index: 100;
+    right: 285px;
     &:hover {
         background: ${themedPalette.slight_layer};
         border: 2px solid ${themedPalette.slight_layer};

@@ -45,6 +45,8 @@ type ThemeVariables = {
     prism_code_8: string;
     prism_code_9: string;
     prism_line_number: string;
+    code_block_wrapper: string;
+    input: string;
 };
 
 type Theme = 'light' | 'dark';
@@ -100,6 +102,8 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
         prism_code_8: '#005cc5',
         prism_code_9: '#a626a4',
         prism_line_number: '#585c63',
+        code_block_wrapper: '#faf6f1',
+        input: '#e5e7ec',
     },
     dark: {
         bg_page1: '#212529',
@@ -148,6 +152,8 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
         prism_code_8: '#61afef',
         prism_code_9: '#c678dd',
         prism_line_number: '#5c6370',
+        code_block_wrapper: '#393b46',
+        input: '#353A46',
     },
 };
 

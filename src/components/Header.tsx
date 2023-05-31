@@ -2,7 +2,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import ThemeToggleButton from './ThemeToggleButton';
 import { themedPalette } from '@/styles/themes';
-import SearchButton from './SearchButton';
 import { Pacifico } from 'next/font/google';
 import useActiveMenu from '@/hooks/useActiveMenu';
 import useScrollTop from '@/hooks/useScrollTop';
@@ -20,7 +19,6 @@ const Header = () => {
                 </LogoLink>
             </Title>
             <Navigation>
-                <SearchButton />
                 <ThemeToggleButton />
                 <NavigationItem $isActive={activeMenu === 'blog'}>
                     <MenuLink
