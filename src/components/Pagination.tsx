@@ -54,19 +54,17 @@ const Pagination = (props: Props) => {
 
     return (
         <Wrapper>
-            <IconWrapper isAbled={isActiveAngleIcon('left')}>
-                <DoubleLeftAngleIcon
-                    width={15}
-                    height={15}
-                    onClick={handleAngleClick('left', 'double')}
-                />
+            <IconWrapper
+                isAbled={isActiveAngleIcon('left')}
+                onClick={handleAngleClick('left', 'double')}
+            >
+                <DoubleLeftAngleIcon width={15} height={15} />
             </IconWrapper>
-            <IconWrapper isAbled={isActiveAngleIcon('left')}>
-                <LeftAngleIcon
-                    width={15}
-                    height={15}
-                    onClick={handleAngleClick('left', 'single')}
-                />
+            <IconWrapper
+                isAbled={isActiveAngleIcon('left')}
+                onClick={handleAngleClick('left', 'single')}
+            >
+                <LeftAngleIcon width={15} height={15} />
             </IconWrapper>
             <PageNumbers>
                 {pageNumbers.map(pageNumber => (
@@ -83,19 +81,17 @@ const Pagination = (props: Props) => {
                     </PageNumberWrapper>
                 ))}
             </PageNumbers>
-            <IconWrapper isAbled={isActiveAngleIcon('right')}>
-                <RightAngleIcon
-                    width={15}
-                    height={15}
-                    onClick={handleAngleClick('right', 'single')}
-                />
+            <IconWrapper
+                isAbled={isActiveAngleIcon('right')}
+                onClick={handleAngleClick('right', 'single')}
+            >
+                <RightAngleIcon width={15} height={15} />
             </IconWrapper>
-            <IconWrapper isAbled={isActiveAngleIcon('right')}>
-                <DoubleRightAngleIcon
-                    width={15}
-                    height={15}
-                    onClick={handleAngleClick('right', 'double')}
-                />
+            <IconWrapper
+                isAbled={isActiveAngleIcon('right')}
+                onClick={handleAngleClick('right', 'double')}
+            >
+                <DoubleRightAngleIcon width={15} height={15} />
             </IconWrapper>
         </Wrapper>
     );
@@ -200,12 +196,13 @@ const Positioner = styled.div`
 interface IconWrapperProps {
     children: JSX.Element;
     isAbled: boolean;
+    onClick: () => void;
 }
 
 const IconWrapper = (props: IconWrapperProps) => {
-    const { children, isAbled } = props;
+    const { children, isAbled, onClick } = props;
     return (
-        <Icon $isAbled={isAbled}>
+        <Icon $isAbled={isAbled} onClick={onClick}>
             <Positioner>{children}</Positioner>
         </Icon>
     );
