@@ -7,10 +7,10 @@ import { ListIcon } from '@/assets/svg';
 import manrope from '@/styles/fonts/manrope';
 
 interface Props {
-    totalPostNumber?: number;
+    totalPostNumber: number;
 }
 
-const BlogCategory = ({ totalPostNumber }: Props) => {
+const Category = ({ totalPostNumber }: Props) => {
     const { activeCategory, setActiveCategory } = useActiveCategory();
 
     return (
@@ -78,7 +78,7 @@ const BlogCategory = ({ totalPostNumber }: Props) => {
     );
 };
 
-export default BlogCategory;
+export default Category;
 
 const Wrapper = styled.div`
     list-style: none;

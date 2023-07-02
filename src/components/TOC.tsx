@@ -54,7 +54,7 @@ const TOC = (props: Props) => {
                             location.href = `#${heading.id}`;
                         }}
                         tag={heading.tag}
-                        isFocus={currentHeadingId === heading.id}
+                        $isFocus={currentHeadingId === heading.id}
                     >
                         {heading.value}
                     </HeadingButton>
@@ -89,12 +89,12 @@ const Title = styled.div`
 
 interface HeadingButtonProps {
     tag: string;
-    isFocus: boolean;
+    $isFocus: boolean;
 }
 
 const HeadingButton = styled.div<HeadingButtonProps>`
     color: ${props => {
-        if (props.isFocus) return 'black';
+        if (props.$isFocus) return 'black';
         else return '#bbb9b9';
     }};
     margin: 10px 0px;
@@ -106,10 +106,10 @@ const HeadingButton = styled.div<HeadingButtonProps>`
         return '10px';
     }};
     background-color: ${props => {
-        if (props.isFocus) return '#eaeaea';
+        if (props.$isFocus) return '#eaeaea';
     }};
     border-left: ${props => {
-        if (props.isFocus) return '4px solid #9980fa';
+        if (props.$isFocus) return '4px solid #9980fa';
     }};
     transition: background-color 0.5s, color 0.5s;
 

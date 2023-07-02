@@ -2,7 +2,6 @@
 import manrope from '@/styles/fonts/manrope';
 import Link from 'next/link';
 import { styled } from 'styled-components';
-import SideMenu from '@/components/SideMenu';
 import Spinner from '@/components/common/Spinner';
 import PostCard from '@/components/PostCard';
 import Pagination from '@/components/Pagination';
@@ -25,7 +24,6 @@ const Main = (props: Props) => {
 
     return (
         <>
-            <SideMenu />
             <Container>
                 {isLoading ? (
                     <Spinner />
