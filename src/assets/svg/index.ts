@@ -11,6 +11,9 @@ export { default as RightAngleIcon } from './icon_right_angle.svg';
 export { default as DoubleLeftAngleIcon } from './icon_double_left_angle.svg';
 export { default as DoubleRightAngleIcon } from './icon_double_right_angle.svg';
 export { default as RemoveIcon } from './icon_remove.svg';
+export { default as ArrowTurnUpIcon } from './icon_arrow_turn_up.svg';
+export { default as CommentIcon } from './icon_comment.svg';
+export { default as ShareIcon } from './icon_share.svg';
 
 export { default as CategoryCppIcon } from './category/category_cpp.svg';
 export { default as CategoryJavaScriptIcon } from './category/category_javascript.svg';
