@@ -6,6 +6,7 @@ import { Pacifico } from 'next/font/google';
 import useActiveMenu from '@/hooks/useActiveMenu';
 import useScrollTop from '@/hooks/useScrollTop';
 import manrope from '@/styles/fonts/manrope';
+import ScrollProgressBar from '@/components/ScrollProgressBar';
 
 const Header = () => {
     const { activeMenu, setActiveMenu } = useActiveMenu();
@@ -13,6 +14,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper $isScrollTop={isScrollTop}>
+            <ScrollProgressBar />
             <Title>
                 <LogoLink href={'/'} onClick={() => setActiveMenu('')}>
                     Julyy.dev<Beta>βeta</Beta>
