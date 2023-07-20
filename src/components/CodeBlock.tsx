@@ -1,4 +1,4 @@
-import { notoSansKR } from '@/styles/fonts/notoSansKR';
+import notoSansKR from '@/styles/fonts/notoSansKR';
 import styled from 'styled-components';
 import { ClipboardIcon, CheckIcon } from '../assets/svg';
 import { useEffect, useState } from 'react';
@@ -79,7 +79,7 @@ const TopBar = (props: TopBarProps) => {
 };
 
 const Wrapper = styled.pre`
-    font-family: ${notoSansKR.style.fontFamily};
+    font-family: ${notoSansKR.normal.style.fontFamily};
     border-radius: 5px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
 `;

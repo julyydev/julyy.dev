@@ -6,6 +6,12 @@ const normal = Manrope({
     display: 'fallback',
 });
 
-const manrope = { normal };
+const bold = Manrope({
+    weight: '700',
+    subsets: ['latin'],
+    display: 'fallback',
+});
+
+const manrope = { normal, bold };
 
 export default manrope;
