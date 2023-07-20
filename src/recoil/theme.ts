@@ -1,6 +1,9 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
-export const isDarkState = atom<boolean>({
-    key: 'authRequestIdsState',
-    default: false,
+const { persistAtom } = recoilPersist();
+export const themeState = atom<'light' | 'dark'>({
+    key: 'themeState',
+    default: 'light',
+    effects_UNSTABLE: [persistAtom],
 });
