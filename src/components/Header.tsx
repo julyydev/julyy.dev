@@ -30,14 +30,6 @@ const Header = () => {
                         Blog
                     </MenuLink>
                 </NavigationItem>
-                <NavigationItem $isActive={activeMenu === 'projects'}>
-                    <MenuLink
-                        href="/projects"
-                        onClick={() => setActiveMenu('projects')}
-                    >
-                        Projects
-                    </MenuLink>
-                </NavigationItem>
                 <NavigationItem $isActive={activeMenu === 'about'}>
                     <MenuLink
                         href="/about"

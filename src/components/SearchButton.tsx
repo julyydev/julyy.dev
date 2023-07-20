@@ -72,7 +72,7 @@ export default SearchButton;
 const SearchBox = styled.div`
     position: fixed;
     top: 12px;
-    right: 295px;
+    right: 225px;
     z-index: 100;
     display: flex;
     justify-content: space-between;
