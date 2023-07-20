@@ -128,7 +128,7 @@ interface PageNumberProps {
 const PageNumberWrapper = styled.div<PageNumberProps>`
     margin: 0 10px;
     border-bottom: ${props => {
-        if (props.$isActive) return `2px solid ${themedPalette.primary_600}`;
+        if (props.$isActive) return `2px solid ${themedPalette.primary_500}`;
     }};
 `;
 
