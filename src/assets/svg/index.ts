@@ -14,6 +14,9 @@ export { default as RemoveIcon } from './icon_remove.svg';
 export { default as ArrowTurnUpIcon } from './icon_arrow_turn_up.svg';
 export { default as CommentIcon } from './icon_comment.svg';
 export { default as ShareIcon } from './icon_share.svg';
+export { default as CalendarIcon } from './icon_calendar.svg';
+export { default as CategoryIcon } from './icon_category.svg';
+export { default as TagIcon } from './icon_tag.svg';
 
 export { default as CategoryCppIcon } from './category/category_cpp.svg';
 export { default as CategoryJavaScriptIcon } from './category/category_javascript.svg';
