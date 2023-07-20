@@ -1,4 +1,4 @@
-import { isDarkState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Divider from './common/Divider';
@@ -8,10 +8,10 @@ const Comments = () => {
     const [commentsElement, setCommentsElement] = useState<Element | null>(
         null,
     );
-    const isDark = useRecoilValue(isDarkState);
+    const theme = useRecoilValue(themeState);
 
     const commentsTheme = () => {
-        if (isDark) return 'github-dark';
+        if (theme === 'dark') return 'github-dark';
         else return 'github-light';
     };
 
@@ -51,7 +51,7 @@ const Comments = () => {
             message,
             'https://utteranc.es',
         );
-    }, [isDark]);
+    }, [theme]);
 
     return (
         <>

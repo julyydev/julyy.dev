@@ -9,10 +9,25 @@ export const metadata: Metadata = {
     description: 'Julyy의 기술 블로그',
 };
 
+const ThemeScript = () => {
+    return (
+        <script
+            dangerouslySetInnerHTML={{
+                __html: `
+                    const theme = localStorage.getItem("theme");
+                    document.body.dataset.theme = theme;
+                    console.log(theme);
+                `,
+            }}
+        ></script>
+    );
+};
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
             <body>
+                <ThemeScript />
                 <Recoil>
                     <StyledComponentsRegistry>
                         <MainLayout>{children}</MainLayout>

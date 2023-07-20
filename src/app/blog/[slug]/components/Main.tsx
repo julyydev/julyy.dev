@@ -16,8 +16,9 @@ import notoSansKR from '@/styles/fonts/notoSansKR';
 import { PostData } from '@/types/post';
 import { Heading } from '@/types/heading';
 import { useRecoilValue } from 'recoil';
-import { isDarkState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import Comments from '@/components/Comments';
+import React, { useEffect, useState } from 'react';
 
 interface Props {
     postData: PostData;
@@ -27,12 +28,16 @@ interface Props {
 
 const Main = (props: Props) => {
     const { postData, postContent, headings } = props;
+    const [codeTheme, setCodeTheme] = useState<React.CSSProperties | null>(
+        null,
+    );
 
-    const isDark = useRecoilValue(isDarkState);
-    const codeTheme = () => {
-        if (isDark) return oneDark;
-        else return oneLight;
-    };
+    const theme = useRecoilValue(themeState);
+
+    useEffect(() => {
+        if (theme === 'dark') setCodeTheme(() => oneDark);
+        else setCodeTheme(() => oneLight);
+    }, [theme]);
 
     return (
         <>
@@ -107,6 +112,8 @@ const Main = (props: Props) => {
                                 const match = /language-(\w+)/.exec(
                                     className || '',
                                 );
+
+                                if (codeTheme === null) return <></>;
                                 return !inline && match ? (
                                     <SyntaxHighlighter
                                         {...props}
@@ -114,7 +121,8 @@ const Main = (props: Props) => {
                                             /\n$/,
                                             '',
                                         )}
-                                        style={codeTheme()}
+                                        // @ts-ignore
+                                        style={codeTheme}
                                         language={match[1]}
                                         PreTag="div"
                                         showLineNumbers

@@ -3,18 +3,25 @@ import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
 import { SunIcon, MoonIcon } from '../assets/svg';
 import { useRecoilState } from 'recoil';
-import { isDarkState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
+import { useEffect, useState } from 'react';
 
 const ThemeToggleButton = () => {
-    const [isDark, setIsDark] = useRecoilState(isDarkState);
+    const [theme, setTheme] = useRecoilState(themeState);
+    const [mounted, setMounted] = useState<boolean>(false);
     const toggleTheme = () => {
-        if (document.querySelector('body')?.dataset.theme === 'dark')
+        if (document.querySelector('body')?.dataset.theme === 'dark') {
+            setTheme('light');
+            localStorage.setItem('theme', 'light');
             document.querySelector('body')?.setAttribute('data-theme', 'light');
-        else document.querySelector('body')?.setAttribute('data-theme', 'dark');
-        setIsDark(prev => !prev);
+        } else {
+            setTheme('dark');
+            localStorage.setItem('theme', 'dark');
+            document.querySelector('body')?.setAttribute('data-theme', 'dark');
+        }
     };
 
-    const transitions = useTransition(isDark, {
+    const transitions = useTransition(theme === 'dark', {
         initial: {
             transform: 'scale(1) rotate(0deg)',
             opacity: 1,
@@ -34,6 +41,12 @@ const ThemeToggleButton = () => {
 
         reverse: true,
     });
+
+    useEffect(() => {
+        setMounted(() => true);
+    }, []);
+
+    if (!mounted) return <></>;
 
     return (
         <IconButton onClick={toggleTheme}>
