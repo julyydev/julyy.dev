@@ -1,6 +1,6 @@
 ---
 title: 테스트-md12
-summary: asjkd lkasdjla klasjkajdaksjd
+summary: asjkd lkasdjla klasjkajdaksjd sakdas;da s;ak;lsas askd;lasdlk sakldla s aslkdlkakd salsakads l ㄴ망ㄴㅁㄴ어 ㅁ너이ㅏㅁㄴ어ㅏㅣㅁㄴㅇ 먼아ㅣㅓㅁㄴ이 ㅏㅁㄴ어ㅣㅏㅓㅇㅁ ㅏㄴ멍 ㅁ너ㅏ안ㅁ ㅁ나ㅓ암ㄴ 
 slug: test-copy12
 date: 2023. 3. 2.
 category: ccc
@@ -8,6 +8,7 @@ series:
 tag:
     - Notion
     - Github
+    - Blog
 thumbnail: https://s3.ap-northeast-2.amazonaws.com/julyy.dev/test-md_0.png
 ---
 
