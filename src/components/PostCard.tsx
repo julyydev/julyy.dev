@@ -46,7 +46,7 @@ const PostCard = (props: Props) => {
                 <Summary>{postData.summary}</Summary>
                 <TagWrapper>
                     {postData.tag.map(tag => (
-                        <TagLabel value={tag}></TagLabel>
+                        <TagLabel key={tag} value={tag}></TagLabel>
                     ))}
                 </TagWrapper>
             </CardContent>
