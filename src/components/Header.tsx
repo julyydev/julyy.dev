@@ -67,7 +67,7 @@ const HeaderWrapper = styled.header<HeaderWrapperProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 40px;
+    padding: 0 40px;
     font-family: ${manrope.normal.style.fontFamily};
     position: fixed;
     width: 100%;
@@ -111,8 +111,8 @@ interface NavigationItemProps {
 
 const NavigationItem = styled.div<NavigationItemProps>`
     color: ${props => {
-        if (props.$isActive) return '#9980fa';
-        else return 'gray';
+        if (props.$isActive) return themedPalette.primary_500;
+        else return themedPalette.text3;
     }};
     font-size: 16px;
     margin-left: 20px;

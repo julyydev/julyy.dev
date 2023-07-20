@@ -108,21 +108,21 @@ const CategoryWrapper = styled.div<CategoryWrapperProps>`
     border-radius: 7px;
     font-size: 15px;
     color: ${props => {
-        if (props.$isActive) return '#9980fa';
-        else return themedPalette.text1;
+        if (props.$isActive) return themedPalette.primary_700;
+        else return themedPalette.text2;
     }};
     background-color: ${props => {
-        if (props.$isActive) return '#e4deff';
+        if (props.$isActive) return themedPalette.primary_100;
     }};
     fill: ${props => {
-        if (props.$isActive) return '#9980fa';
+        if (props.$isActive) return themedPalette.primary_700;
         else return themedPalette.text3;
     }};
 
     &:hover {
-        background-color: #e4deff;
-        color: #9980fa;
-        fill: #9980fa;
+        background-color: ${themedPalette.primary_100};
+        color: ${themedPalette.primary_700};
+        fill: ${themedPalette.primary_700};
     }
 `;
 

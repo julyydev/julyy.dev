@@ -1,3 +1,4 @@
+import React from 'react';
 import SearchButton from '@/components/SearchButton';
 import SideMenu from '@/components/SideMenu';
 import getAllPostData from '@/lib/getAllPostData';

@@ -1,5 +1,5 @@
 import { themedPalette } from '@/styles/themes';
-import { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 

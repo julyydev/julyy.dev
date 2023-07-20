@@ -1,9 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import Divider from './common/Divider';
 import { themedPalette } from '@/styles/themes';
 import useInput from '@/hooks/useInput';
 import { RemoveIcon, SearchIcon } from '@/assets/svg';
-import { useEffect, useState } from 'react';
 import nanumGothic from '@/styles/fonts/nanumGothic';
 import { PostData } from '@/types/post';
 import SearchResultPost from './SearchResultPost';
@@ -143,7 +143,7 @@ const SearchBox = styled.div`
     padding: 10px 20px;
     background-color: ${themedPalette.input};
     width: 90%;
-    margin: 15px 0px;
+    margin: 15px 0;
     border-radius: 50px;
 `;
 

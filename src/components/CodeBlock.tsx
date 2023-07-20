@@ -1,7 +1,6 @@
 import { notoSansKR } from '@/styles/fonts/notoSansKR';
 import styled from 'styled-components';
 import { ClipboardIcon, CheckIcon } from '../assets/svg';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { themedPalette } from '@/styles/themes';
 
@@ -82,7 +81,7 @@ const TopBar = (props: TopBarProps) => {
 const Wrapper = styled.pre`
     font-family: ${notoSansKR.style.fontFamily};
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
 `;
 
 const CodeWrapper = styled.div`
@@ -98,7 +97,7 @@ const TopBarWrapper = styled.div`
     height: 40px;
     margin-bottom: -12px;
     position: relative;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0 0;
 `;
 
 const CircleWrapper = styled.div`
@@ -127,13 +126,6 @@ const Circle = styled.div<CircleProps>`
     }};
 `;
 
-const LeftWrapper = styled.div`
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    margin-left: 90px;
-`;
-
 const RightWrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -141,7 +133,7 @@ const RightWrapper = styled.div`
     width: auto;
     position: absolute;
     top: 50%;
-    right: 0%;
+    right: 0;
     transform: translate(0, -50%);
     margin-right: 10px;
 `;
@@ -151,17 +143,12 @@ const Language = styled.div`
     top: 50%;
     transform: translate(0, -50%);
     margin-left: 90px;
-    color: #ffbc2e;
+    color: ${themedPalette.warning_500};
     font-size: 14px;
 `;
 
-const Icon = styled(Image)`
-    width: 16px;
-    height: 16px;
-`;
-
 const CopyText = styled.div`
-    color: #ffbc2e;
+    color: ${themedPalette.warning_500};
     font-size: 12px;
     margin-left: 5px;
 `;
@@ -170,7 +157,6 @@ const CopyButton = styled.button`
     background: none;
     border: none;
     cursor: pointer;
-    color: white;
     display: flex;
     align-items: center;
 `;

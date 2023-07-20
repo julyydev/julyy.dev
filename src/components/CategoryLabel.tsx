@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { themedPalette } from '@/styles/themes';
 
 interface Props {
     text: string;
@@ -20,9 +21,8 @@ const CategoryLabel = (props: Props) => {
 export default CategoryLabel;
 
 const Label = styled.div`
-    background-color: #e4deff;
-    color: #9980fa;
-    /* border: 1px solid #9980fa; */
+    background-color: ${themedPalette.primary_100};
+    color: ${themedPalette.primary_700};
     border-radius: 20px;
     font-size: 14px;
     padding: 4px 8px;

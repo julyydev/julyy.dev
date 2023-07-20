@@ -48,20 +48,21 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
-    padding: 30px;
+    padding: 20px;
     background-color: ${props => {
-        if (props.$isFocus) return '#efecff';
+        if (props.$isFocus) return themedPalette.input;
     }};
-    border-left: ${props => {
-        if (props.$isFocus) return '5px solid #9980fa';
-    }};
+    margin: 0 15px;
+    border-radius: 10px;
 
     &:hover {
         cursor: pointer;
     }
 `;
 
-const Title = styled.div``;
+const Title = styled.div`
+    color: ${themedPalette.text2};
+`;
 
 const Summary = styled.div`
     color: ${themedPalette.text3};
@@ -69,5 +70,5 @@ const Summary = styled.div`
 `;
 
 const Keyword = styled.span`
-    color: #9980fa;
+    color: ${themedPalette.primary_500};
 `;

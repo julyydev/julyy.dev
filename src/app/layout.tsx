@@ -1,3 +1,4 @@
+import React from 'react';
 import { Metadata } from 'next';
 import MainLayout from '@/components/layouts/MainLayout';
 import StyledComponentsRegistry from '@/lib/registry/styledComponents';

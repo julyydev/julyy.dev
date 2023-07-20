@@ -141,5 +141,4 @@ const Container = styled.div`
     width: 40%;
     margin: 0 30%;
     font-family: ${notoSansKR.style.fontFamily};
-    /* font-size: 1.125rem; */
 `;

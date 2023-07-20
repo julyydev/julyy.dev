@@ -69,8 +69,8 @@ export default Main;
 const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px 0px;
-    padding: 0px 100px;
+    grid-gap: 30px 0;
+    padding: 0 100px;
 `;
 
 const Container = styled.div`
