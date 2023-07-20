@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { themedPalette } from '@/styles/themes';
 
 interface Props {
     children: any;
@@ -23,6 +24,6 @@ const Wrapper = styled.p`
 
 const Caption = styled.span`
     display: block;
-    color: gray;
+    color: ${themedPalette.text3};
     font-size: 14px;
 `;

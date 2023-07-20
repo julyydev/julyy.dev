@@ -12,7 +12,7 @@ import {
     oneDark,
 } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { styled } from 'styled-components';
-import { notoSansKR } from '@/styles/fonts/notoSansKR';
+import notoSansKR from '@/styles/fonts/notoSansKR';
 import { PostData } from '@/types/post';
 import { Heading } from '@/types/heading';
 import { useRecoilValue } from 'recoil';
@@ -140,6 +140,5 @@ export default Main;
 const Container = styled.div`
     width: 40%;
     margin: 0 30%;
-    font-family: ${notoSansKR.style.fontFamily};
-    /* font-size: 1.125rem; */
+    font-family: ${notoSansKR.normal.style.fontFamily};
 `;

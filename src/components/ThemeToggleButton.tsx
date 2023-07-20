@@ -79,7 +79,7 @@ const Positioner = styled.div`
 `;
 
 const SVGWrapper = styled.div`
-    color: #ffbc2e;
+    color: ${themedPalette.warning_500};
     svg {
         display: block;
     }

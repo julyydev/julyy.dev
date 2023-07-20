@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import manrope from '@/styles/fonts/manrope';
 import { themedPalette } from '@/styles/themes';
 import { styled } from 'styled-components';
@@ -13,7 +14,7 @@ const Wrapper = styled.kbd`
     padding: 2px 5px;
     border-radius: 5px;
     margin: 2px;
-    box-shadow: 1px 1px 1px 0px ${themedPalette.text3};
+    box-shadow: 1px 1px 1px 0 ${themedPalette.text3};
     font-family: ${manrope.normal.style.fontFamily};
     font-size: 10px;
     color: ${themedPalette.text3};

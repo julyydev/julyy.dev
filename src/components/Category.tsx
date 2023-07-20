@@ -18,10 +18,13 @@ const Category = ({ totalPostNumber }: Props) => {
             <NoDecorationLink
                 href={{
                     pathname: '/blog',
+                    query: {
+                        category: 'all',
+                    },
                 }}
-                onClick={() => setActiveCategory(null)}
+                onClick={() => setActiveCategory('all')}
             >
-                <CategoryWrapper $isActive={false}>
+                <CategoryWrapper $isActive={activeCategory === 'all'}>
                     All ({totalPostNumber})
                 </CategoryWrapper>
             </NoDecorationLink>
@@ -58,7 +61,12 @@ const Category = ({ totalPostNumber }: Props) => {
                                     }
                                 >
                                     {subCategory.icon && (
-                                        <Icon>
+                                        <Icon
+                                            $isActive={
+                                                activeCategory ===
+                                                subCategory.name.toLowerCase()
+                                            }
+                                        >
                                             <Positioner>
                                                 <subCategory.icon
                                                     width={14}
@@ -108,21 +116,21 @@ const CategoryWrapper = styled.div<CategoryWrapperProps>`
     border-radius: 7px;
     font-size: 15px;
     color: ${props => {
-        if (props.$isActive) return '#9980fa';
-        else return themedPalette.text1;
+        if (props.$isActive) return themedPalette.primary_700;
+        else return themedPalette.text2;
     }};
     background-color: ${props => {
-        if (props.$isActive) return '#e4deff';
+        if (props.$isActive) return themedPalette.primary_100;
     }};
     fill: ${props => {
-        if (props.$isActive) return '#9980fa';
+        if (props.$isActive) return themedPalette.primary_700;
         else return themedPalette.text3;
     }};
 
     &:hover {
-        background-color: #e4deff;
-        color: #9980fa;
-        fill: #9980fa;
+        background-color: ${themedPalette.input};
+        color: ${themedPalette.text1};
+        fill: ${themedPalette.text1};
     }
 `;
 
@@ -135,11 +143,17 @@ const NoDecorationLink = styled(Link)`
     text-decoration: none;
 `;
 
-const Icon = styled.div`
+interface IconProps {
+    $isActive: boolean;
+}
+
+const Icon = styled.div<IconProps>`
     position: relative;
     margin-right: 10px;
     padding: 1px;
-    background-color: #eae9e9;
+    background-color: ${props => {
+        return props.$isActive ? 'none' : themedPalette.input;
+    }};
     border-radius: 7px;
     width: 25px;
     height: 25px;

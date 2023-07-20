@@ -4,6 +4,8 @@ import Image from 'next/image';
 import nanumGothic from '@/styles/fonts/nanumGothic';
 import CategoryLabel from './CategoryLabel';
 import { themedPalette } from '@/styles/themes';
+import { CalendarIcon, TagIcon } from '@/assets/svg';
+import TagLabel from '@/components/TagLabel';
 
 interface Props {
     postData: PostData;
@@ -29,16 +31,24 @@ const PostCard = (props: Props) => {
                 />
             </Thumbnail>
             <CardContent>
+                <CardContentTopWrapper>
+                    <CategoryLabel value={postData.category} />
+                    <DateWrapper>
+                        <CalendarIcon
+                            width={12}
+                            height={12}
+                            fill={themedPalette.text3}
+                        />
+                        <Date>{postData.date}</Date>
+                    </DateWrapper>
+                </CardContentTopWrapper>
                 <Title>{postData.title}</Title>
                 <Summary>{postData.summary}</Summary>
-                <Meta>
-                    <CategoryLabel text={postData.category} />
-                    {postData.series && <Series>{postData.series}</Series>}
+                <TagWrapper>
                     {postData.tag.map(tag => (
-                        <Tag key={tag}>{tag}</Tag>
+                        <TagLabel key={tag} value={tag}></TagLabel>
                     ))}
-                    <Date>{postData.date}</Date>
-                </Meta>
+                </TagWrapper>
             </CardContent>
         </CardContainer>
     );
@@ -49,11 +59,17 @@ export default PostCard;
 const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     overflow: hidden;
     width: 90%;
     font-family: ${nanumGothic.normal.style.fontFamily};
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    }
 `;
 
 const Thumbnail = styled.div`
@@ -64,49 +80,54 @@ const Thumbnail = styled.div`
 
 const CardContent = styled.div`
     display: flex;
+    justify-content: center;
     flex-direction: column;
     padding: 16px;
     height: 100%;
+    background-color: ${themedPalette.bg_page2};
 `;
 
-const Title = styled.h2`
-    font-size: 24px;
+const CardContentTopWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+const Title = styled.div`
+    font-size: 18px;
     font-family: ${nanumGothic.bold.style.fontFamily};
-    margin: 0;
+    color: ${themedPalette.text1};
+    margin-top: 16px;
 `;
 
-const Summary = styled.p`
+const Summary = styled.div`
+    font-size: 14px;
+    font-family: ${nanumGothic.normal.style.fontFamily};
     margin: 16px 0;
+    color: ${themedPalette.text2};
+    width: 100%;
+    height: 32px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 `;
 
-const Meta = styled.div`
+const TagWrapper = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 `;
 
-const Category = styled.span`
-    background-color: #f0f0f0;
-    color: #333;
-    border-radius: 4px;
-    font-size: 14px;
-    padding: 4px 8px;
-    margin-right: 8px;
+const DateWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
 `;
 
-const Series = styled(Category)`
-    background-color: #333;
-    color: #fff;
-`;
-
-const Tag = styled(Category)`
-    background-color: #fff;
-    color: #333;
-    margin-right: 8px;
-`;
-
-const Date = styled.span`
-    margin-left: auto;
-    font-size: 14px;
+const Date = styled.div`
+    margin-left: 5px;
+    font-size: 12px;
     color: ${themedPalette.text3};
 `;

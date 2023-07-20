@@ -32,7 +32,7 @@ const SideMenu = (props: Props) => {
 export default SideMenu;
 
 const Wrapper = styled.aside`
-    width: 10%;
+    width: 180px;
     height: 100%;
     padding: 20px 40px;
     position: fixed;

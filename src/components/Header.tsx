@@ -6,6 +6,7 @@ import { Pacifico } from 'next/font/google';
 import useActiveMenu from '@/hooks/useActiveMenu';
 import useScrollTop from '@/hooks/useScrollTop';
 import manrope from '@/styles/fonts/manrope';
+import ScrollProgressBar from '@/components/ScrollProgressBar';
 
 const Header = () => {
     const { activeMenu, setActiveMenu } = useActiveMenu();
@@ -13,6 +14,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper $isScrollTop={isScrollTop}>
+            <ScrollProgressBar />
             <Title>
                 <LogoLink href={'/'} onClick={() => setActiveMenu('')}>
                     Julyy.dev<Beta>βeta</Beta>
@@ -28,20 +30,12 @@ const Header = () => {
                         Blog
                     </MenuLink>
                 </NavigationItem>
-                <NavigationItem $isActive={activeMenu === 'projects'}>
+                <NavigationItem $isActive={activeMenu === 'resume'}>
                     <MenuLink
-                        href="/projects"
-                        onClick={() => setActiveMenu('projects')}
+                        href="/resume"
+                        onClick={() => setActiveMenu('resume')}
                     >
-                        Projects
-                    </MenuLink>
-                </NavigationItem>
-                <NavigationItem $isActive={activeMenu === 'about'}>
-                    <MenuLink
-                        href="/about"
-                        onClick={() => setActiveMenu('about')}
-                    >
-                        About
+                        Resume
                     </MenuLink>
                 </NavigationItem>
             </Navigation>
@@ -67,7 +61,7 @@ const HeaderWrapper = styled.header<HeaderWrapperProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 40px;
+    padding: 0 40px;
     font-family: ${manrope.normal.style.fontFamily};
     position: fixed;
     width: 100%;
@@ -111,8 +105,8 @@ interface NavigationItemProps {
 
 const NavigationItem = styled.div<NavigationItemProps>`
     color: ${props => {
-        if (props.$isActive) return '#9980fa';
-        else return 'gray';
+        if (props.$isActive) return themedPalette.primary_500;
+        else return themedPalette.text3;
     }};
     font-size: 16px;
     margin-left: 20px;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ProfileImage from '../assets/image/profile.png';
 import Image from 'next/image';
+import { themedPalette } from '@/styles/themes';
 
 const Profile = () => {
     return (
@@ -31,11 +32,11 @@ const Wrapper = styled.div`
 const ProfileWrapper = styled.div`
     width: 150px;
     height: 150px;
-    border: 1px solid gray;
+    border: 1px solid ${themedPalette.text3};
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e4deff;
+    background-color: ${themedPalette.primary_100};
 `;

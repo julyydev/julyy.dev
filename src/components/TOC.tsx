@@ -1,6 +1,9 @@
 import { Heading } from '@/types/heading';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { themedPalette } from '@/styles/themes';
+import { ArrowTurnUpIcon, CommentIcon, ShareIcon } from '@/assets/svg';
+import IconButton from '@/components/common/IconButton';
 
 interface Props {
     headings: Heading[];
@@ -43,9 +46,24 @@ const TOC = (props: Props) => {
         return () => intersectionObserver.disconnect();
     }, []);
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // 부드러운 스크롤을 위해 behavior를 "smooth"로 설정합니다.
+        });
+    };
+
+    // 스크롤을 맨 아래로 이동하는 함수
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+        });
+    };
+
     return (
         <Wrapper>
-            <Title>목차</Title>
+            <Title>On This Page</Title>
             {headings.map(heading => {
                 return (
                     <HeadingButton
@@ -60,6 +78,29 @@ const TOC = (props: Props) => {
                     </HeadingButton>
                 );
             })}
+            <ButtonGroup>
+                <IconButton>
+                    <ShareIcon
+                        fill={themedPalette.text3}
+                        width={20}
+                        height={20}
+                    />
+                </IconButton>
+                <IconButton onClick={() => scrollToTop()}>
+                    <ArrowTurnUpIcon
+                        fill={themedPalette.text3}
+                        width={20}
+                        height={20}
+                    />
+                </IconButton>
+                <IconButton onClick={() => scrollToBottom()}>
+                    <CommentIcon
+                        fill={themedPalette.text3}
+                        width={20}
+                        height={20}
+                    />
+                </IconButton>
+            </ButtonGroup>
         </Wrapper>
     );
 };
@@ -71,18 +112,18 @@ const Wrapper = styled.aside`
     top: 50%;
     right: 0;
     transform: translate(0, -50%);
-    /* border-left: 2px solid #bbb9b9; */
-    padding-left: 10px;
     width: 200px;
-    height: 400px;
     margin-right: 100px;
     color: #bbb9b9;
     font-size: 14px;
+    border: 1px solid ${themedPalette.text4};
+    border-radius: 15px;
+    padding: 10px;
 `;
 
 const Title = styled.div`
-    color: #bbb9b9;
-    border-bottom: 1px solid #bbb9b9;
+    color: ${themedPalette.text2};
+    border-bottom: 1px solid ${themedPalette.text4};
     padding-bottom: 10px;
     padding-left: 10px;
 `;
@@ -94,10 +135,10 @@ interface HeadingButtonProps {
 
 const HeadingButton = styled.div<HeadingButtonProps>`
     color: ${props => {
-        if (props.$isFocus) return 'black';
+        if (props.$isFocus) return themedPalette.primary_700;
         else return '#bbb9b9';
     }};
-    margin: 10px 0px;
+    margin: 10px 0;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-left: ${props => {
@@ -106,15 +147,22 @@ const HeadingButton = styled.div<HeadingButtonProps>`
         return '10px';
     }};
     background-color: ${props => {
-        if (props.$isFocus) return '#eaeaea';
+        if (props.$isFocus) return themedPalette.primary_100;
     }};
-    border-left: ${props => {
-        if (props.$isFocus) return '4px solid #9980fa';
-    }};
+    border-radius: 7px;
     transition: background-color 0.5s, color 0.5s;
 
     &:hover {
-        color: #9980fa;
+        color: ${themedPalette.primary_700};
         font-weight: bold;
+    }
+`;
+
+const ButtonGroup = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    button:first-child {
+        margin-right: auto;
     }
 `;

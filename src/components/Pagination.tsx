@@ -55,13 +55,13 @@ const Pagination = (props: Props) => {
     return (
         <Wrapper>
             <IconWrapper
-                isAbled={isActiveAngleIcon('left')}
+                isAble={isActiveAngleIcon('left')}
                 onClick={handleAngleClick('left', 'double')}
             >
                 <DoubleLeftAngleIcon width={15} height={15} />
             </IconWrapper>
             <IconWrapper
-                isAbled={isActiveAngleIcon('left')}
+                isAble={isActiveAngleIcon('left')}
                 onClick={handleAngleClick('left', 'single')}
             >
                 <LeftAngleIcon width={15} height={15} />
@@ -82,13 +82,13 @@ const Pagination = (props: Props) => {
                 ))}
             </PageNumbers>
             <IconWrapper
-                isAbled={isActiveAngleIcon('right')}
+                isAble={isActiveAngleIcon('right')}
                 onClick={handleAngleClick('right', 'single')}
             >
                 <RightAngleIcon width={15} height={15} />
             </IconWrapper>
             <IconWrapper
-                isAbled={isActiveAngleIcon('right')}
+                isAble={isActiveAngleIcon('right')}
                 onClick={handleAngleClick('right', 'double')}
             >
                 <DoubleRightAngleIcon width={15} height={15} />
@@ -118,7 +118,7 @@ const PageNumbers = styled.div`
     align-items: center;
     height: 27px;
     border-radius: 20px;
-    margin: 0px 5px;
+    margin: 0 5px;
 `;
 
 interface PageNumberProps {
@@ -126,9 +126,9 @@ interface PageNumberProps {
 }
 
 const PageNumberWrapper = styled.div<PageNumberProps>`
-    margin: 0px 10px;
+    margin: 0 10px;
     border-bottom: ${props => {
-        if (props.$isActive) return '2px solid #9980fa';
+        if (props.$isActive) return `2px solid ${themedPalette.primary_500}`;
     }};
 `;
 
@@ -141,19 +141,19 @@ const PageNumber = styled.div<PageNumberProps>`
     border-radius: 50%;
     font-family: ${manrope.normal.style.fontFamily};
     color: ${props => {
-        if (props.$isActive) return '#9980fa';
+        if (props.$isActive) return themedPalette.primary_500;
         else return themedPalette.text3;
     }};
 
     &:hover {
         cursor: pointer;
-        background-color: #e4deff;
-        color: #9980fa;
+        background-color: ${themedPalette.primary_100};
+        color: ${themedPalette.primary_500};
     }
 `;
 
 interface IconProps {
-    $isAbled: boolean;
+    $isAble: boolean;
 }
 
 const Icon = styled.div<IconProps>`
@@ -164,19 +164,19 @@ const Icon = styled.div<IconProps>`
     width: 25px;
     height: 25px;
     fill: ${props => {
-        if (props.$isAbled) return themedPalette.text3;
-        else return themedPalette.bg_element4;
+        if (props.$isAble) return themedPalette.text3;
+        else return themedPalette.text4;
     }};
 
     &:hover {
         cursor: ${props => {
-            if (props.$isAbled) return 'pointer';
+            if (props.$isAble) return 'pointer';
         }};
         background-color: ${props => {
-            if (props.$isAbled) return '#e4deff';
+            if (props.$isAble) return themedPalette.primary_100;
         }};
         fill: ${props => {
-            if (props.$isAbled) return '#9980fa';
+            if (props.$isAble) return themedPalette.primary_500;
         }};
     }
 `;
@@ -186,23 +186,21 @@ const Positioner = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    fill: inherit;
     svg {
         display: block;
-        fill: inherit;
     }
 `;
 
 interface IconWrapperProps {
     children: JSX.Element;
-    isAbled: boolean;
+    isAble: boolean;
     onClick: () => void;
 }
 
 const IconWrapper = (props: IconWrapperProps) => {
-    const { children, isAbled, onClick } = props;
+    const { children, isAble, onClick } = props;
     return (
-        <Icon $isAbled={isAbled} onClick={onClick}>
+        <Icon $isAble={isAble} onClick={onClick}>
             <Positioner>{children}</Positioner>
         </Icon>
     );

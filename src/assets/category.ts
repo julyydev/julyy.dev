@@ -1,4 +1,5 @@
 import { CategoryCppIcon, CategoryJavaScriptIcon } from './svg';
+import React from 'react';
 
 type CategoryType = 'main' | 'sub';
 

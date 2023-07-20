@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { themedPalette } from '@/styles/themes';
 
 const Spinner = () => {
     return (
@@ -35,8 +36,8 @@ const spin = keyframes`
 const SpinnerAnimation = styled.div`
     width: 40px;
     height: 40px;
-    border: 8px solid #cacaca;
-    border-top: 8px solid #9980fa;
+    border: 8px solid ${themedPalette.text4};
+    border-top: 8px solid ${themedPalette.primary_500};
     border-radius: 50%;
     animation: ${spin} 1s linear infinite;
 `;
