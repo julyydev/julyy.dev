@@ -30,12 +30,12 @@ const Header = () => {
                         Blog
                     </MenuLink>
                 </NavigationItem>
-                <NavigationItem $isActive={activeMenu === 'about'}>
+                <NavigationItem $isActive={activeMenu === 'resume'}>
                     <MenuLink
-                        href="/about"
-                        onClick={() => setActiveMenu('about')}
+                        href="/resume"
+                        onClick={() => setActiveMenu('resume')}
                     >
-                        About
+                        Resume
                     </MenuLink>
                 </NavigationItem>
             </Navigation>
