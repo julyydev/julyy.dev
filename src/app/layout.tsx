@@ -16,14 +16,13 @@ const ThemeScript = () => {
                 __html: `
                     const theme = localStorage.getItem("theme");
                     document.body.dataset.theme = theme;
-                    console.log(theme);
                 `,
             }}
         ></script>
     );
 };
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (

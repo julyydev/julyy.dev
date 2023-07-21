@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import SearchButton from '@/components/SearchButton';
 import SideMenu from '@/components/SideMenu';
 import getAllPostData from '@/lib/getAllPostData';
-
-export const dynamic = 'force-static';
 
 const BlogLayout = async ({ children }: { children: React.ReactNode }) => {
     const { postDataList } = await getAllPostData();
 
     return (
         <>
-            <SideMenu totalPostNumber={postDataList.length} />
+            <Suspense>
+                <SideMenu totalPostNumber={postDataList.length} />
+            </Suspense>
             <SearchButton postDataList={postDataList} />
             {children}
         </>

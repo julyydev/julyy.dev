@@ -24,44 +24,43 @@ const Main = (props: Props) => {
         if (category === 'all') return true;
         return postData.category === category;
     });
-    console.log(page);
+
+    if (category === null)
+        return (
+            <Container>
+                <BlogMain />
+            </Container>
+        );
 
     return (
         <Container>
             <>
-                {category === null ? (
-                    <BlogMain />
+                <Category>{category.toUpperCase()}</Category>
+                {filteredPostDataList.length === 0 ? (
+                    <NoPost>게시물이 없습니다.</NoPost>
                 ) : (
-                    <>
-                        <Category>{category.toUpperCase()}</Category>
-
-                        {filteredPostDataList.length === 0 ? (
-                            <NoPost>게시물이 없습니다.</NoPost>
-                        ) : (
-                            <GridWrapper>
-                                <GridContainer>
-                                    {filteredPostDataList
-                                        .slice(
-                                            numberPagesViewOneTime * (page - 1),
-                                            numberPagesViewOneTime * page,
-                                        )
-                                        .map(postData => (
-                                            <StyledLink
-                                                key={postData.slug}
-                                                href={`/blog/${postData.slug}`}
-                                            >
-                                                <PostCard postData={postData} />
-                                            </StyledLink>
-                                        ))}
-                                </GridContainer>
-                                <Pagination
-                                    category={category}
-                                    postNumber={filteredPostDataList.length}
-                                    currentPage={page}
-                                />
-                            </GridWrapper>
-                        )}
-                    </>
+                    <GridWrapper>
+                        <GridContainer>
+                            {filteredPostDataList
+                                .slice(
+                                    numberPagesViewOneTime * (page - 1),
+                                    numberPagesViewOneTime * page,
+                                )
+                                .map(postData => (
+                                    <StyledLink
+                                        key={postData.slug}
+                                        href={`/blog/${postData.slug}`}
+                                    >
+                                        <PostCard postData={postData} />
+                                    </StyledLink>
+                                ))}
+                        </GridContainer>
+                        <Pagination
+                            category={category}
+                            postNumber={filteredPostDataList.length}
+                            currentPage={page}
+                        />
+                    </GridWrapper>
                 )}
             </>
         </Container>

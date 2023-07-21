@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import GlobalStyles from '@/styles/globalStyles';
@@ -9,7 +9,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <GlobalStyles />
-            <Header />
+            <Suspense>
+                <Header />
+            </Suspense>
             <Wrapper>{children}</Wrapper>
             <Footer />
         </>

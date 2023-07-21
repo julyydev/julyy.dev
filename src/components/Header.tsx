@@ -11,7 +11,6 @@ import { usePathname } from 'next/navigation';
 const Header = () => {
     const pathname = usePathname();
     const match = pathname.match(/^\/([^\/]+)/);
-    if (match && match[1]) console.log(match[1]);
     const activeMenu = match && match[1];
     const { isScrollTop } = useScrollTop();
 
