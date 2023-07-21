@@ -2,14 +2,13 @@
 import manrope from '@/styles/fonts/manrope';
 import Link from 'next/link';
 import { styled } from 'styled-components';
-import Spinner from '@/components/common/Spinner';
 import PostCard from '@/components/PostCard';
 import Pagination from '@/components/Pagination';
-import useBlogQuery from '@/hooks/useBlogQuery';
 import { numberPagesViewOneTime } from '@/constants/page';
 import { PostData } from '@/types/post';
 import { themedPalette } from '@/styles/themes';
 import BlogMain from '@/app/blog/components/BlogMain';
+import { useSearchParams } from 'next/navigation';
 
 interface Props {
     postDataList: PostData[];
@@ -17,51 +16,51 @@ interface Props {
 
 const Main = (props: Props) => {
     const { postDataList } = props;
-    const { category, page, isLoading } = useBlogQuery();
+    const searchParams = useSearchParams();
+    const category = searchParams.get('category');
+    const page = Number(searchParams.get('page')) || 1;
 
     const filteredPostDataList = postDataList.filter(postData => {
         if (category === 'all') return true;
         return postData.category === category;
     });
 
-    if (isLoading) return <Spinner />;
+    if (category === null)
+        return (
+            <Container>
+                <BlogMain />
+            </Container>
+        );
 
     return (
         <Container>
             <>
-                {category === null ? (
-                    <BlogMain />
+                <Category>{category.toUpperCase()}</Category>
+                {filteredPostDataList.length === 0 ? (
+                    <NoPost>게시물이 없습니다.</NoPost>
                 ) : (
-                    <>
-                        <Category>{category.toUpperCase()}</Category>
-
-                        {filteredPostDataList.length === 0 ? (
-                            <NoPost>게시물이 없습니다.</NoPost>
-                        ) : (
-                            <GridWrapper>
-                                <GridContainer>
-                                    {filteredPostDataList
-                                        .slice(
-                                            numberPagesViewOneTime * (page - 1),
-                                            numberPagesViewOneTime * page,
-                                        )
-                                        .map(postData => (
-                                            <StyledLink
-                                                key={postData.slug}
-                                                href={`/blog/${postData.slug}`}
-                                            >
-                                                <PostCard postData={postData} />
-                                            </StyledLink>
-                                        ))}
-                                </GridContainer>
-                                <Pagination
-                                    category={category}
-                                    postNumber={filteredPostDataList.length}
-                                    currentPage={page}
-                                />
-                            </GridWrapper>
-                        )}
-                    </>
+                    <GridWrapper>
+                        <GridContainer>
+                            {filteredPostDataList
+                                .slice(
+                                    numberPagesViewOneTime * (page - 1),
+                                    numberPagesViewOneTime * page,
+                                )
+                                .map(postData => (
+                                    <StyledLink
+                                        key={postData.slug}
+                                        href={`/blog/${postData.slug}`}
+                                    >
+                                        <PostCard postData={postData} />
+                                    </StyledLink>
+                                ))}
+                        </GridContainer>
+                        <Pagination
+                            category={category}
+                            postNumber={filteredPostDataList.length}
+                            currentPage={page}
+                        />
+                    </GridWrapper>
                 )}
             </>
         </Container>
@@ -70,11 +69,43 @@ const Main = (props: Props) => {
 
 export default Main;
 
+const Container = styled.div`
+    margin-left: 260px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (max-width: 992px) {
+        margin-left: 0;
+        padding: 0 30px;
+    }
+
+    @media (max-width: 768px) {
+        margin-left: 0;
+        padding: 0 15px;
+    }
+`;
+
 const GridContainer = styled.div`
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 30px 0;
-    padding: 0 100px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
+
+    @media (max-width: 1700px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1350px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;
 
 const Category = styled.div`
@@ -91,7 +122,7 @@ const Category = styled.div`
         height: 1px;
         content: '';
         background-color: ${themedPalette.text3};
-        width: 150px;
+        width: 100px;
     }
 
     &:after {
@@ -100,7 +131,7 @@ const Category = styled.div`
         height: 1px;
         content: '';
         background-color: ${themedPalette.text3};
-        width: 150px;
+        width: 100px;
     }
 `;
 
@@ -111,15 +142,20 @@ const GridWrapper = styled.div`
     justify-content: space-between;
 `;
 
-const Container = styled.div`
-    margin: 0 15%;
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-`;
-
 const StyledLink = styled(Link)`
     text-decoration: none;
+    width: 320px;
+    height: 360px;
+
+    @media (max-width: 992px) {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 const NoPost = styled.div`

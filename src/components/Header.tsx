@@ -3,40 +3,32 @@ import styled from 'styled-components';
 import ThemeToggleButton from './ThemeToggleButton';
 import { themedPalette } from '@/styles/themes';
 import { Pacifico } from 'next/font/google';
-import useActiveMenu from '@/hooks/useActiveMenu';
 import useScrollTop from '@/hooks/useScrollTop';
 import manrope from '@/styles/fonts/manrope';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
-    const { activeMenu, setActiveMenu } = useActiveMenu();
+    const pathname = usePathname();
+    const match = pathname.match(/^\/([^\/]+)/);
+    const activeMenu = match && match[1];
     const { isScrollTop } = useScrollTop();
 
     return (
         <HeaderWrapper $isScrollTop={isScrollTop}>
             <ScrollProgressBar />
             <Title>
-                <LogoLink href={'/'} onClick={() => setActiveMenu('')}>
+                <LogoLink href={'/'}>
                     Julyy.dev<Beta>βeta</Beta>
                 </LogoLink>
             </Title>
             <Navigation>
                 <ThemeToggleButton />
                 <NavigationItem $isActive={activeMenu === 'blog'}>
-                    <MenuLink
-                        href="/blog"
-                        onClick={() => setActiveMenu('blog')}
-                    >
-                        Blog
-                    </MenuLink>
+                    <MenuLink href="/blog">Blog</MenuLink>
                 </NavigationItem>
                 <NavigationItem $isActive={activeMenu === 'resume'}>
-                    <MenuLink
-                        href="/resume"
-                        onClick={() => setActiveMenu('resume')}
-                    >
-                        Resume
-                    </MenuLink>
+                    <MenuLink href="/resume">Resume</MenuLink>
                 </NavigationItem>
             </Navigation>
         </HeaderWrapper>
@@ -79,6 +71,11 @@ const Title = styled.h1`
     font-family: ${font.style.fontFamily};
     font-size: 25px;
     margin: 0;
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+        margin-left: -20px;
+    }
 `;
 
 const Beta = styled.span`
@@ -97,6 +94,10 @@ const MenuLink = styled(Link)`
 
 const Navigation = styled.nav`
     display: flex;
+
+    @media (max-width: 768px) {
+        margin-right: -20px;
+    }
 `;
 
 interface NavigationItemProps {
@@ -118,5 +119,9 @@ const NavigationItem = styled.div<NavigationItemProps>`
     &:hover {
         color: ${themedPalette.text1};
         text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        margin-left: 10px;
     }
 `;

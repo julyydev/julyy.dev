@@ -1,1 +1,1 @@
-export const numberPagesViewOneTime = 9;
+export const numberPagesViewOneTime = 12;

@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import categories from '@/assets/category';
-import useActiveCategory from '@/hooks/useActiveCategory';
 import { themedPalette } from '@/styles/themes';
 import { ListIcon } from '@/assets/svg';
 import manrope from '@/styles/fonts/manrope';
+import { useSearchParams } from 'next/navigation';
 
 interface Props {
     totalPostNumber: number;
 }
 
 const Category = ({ totalPostNumber }: Props) => {
-    const { activeCategory, setActiveCategory } = useActiveCategory();
+    const searchParams = useSearchParams();
+    const activeCategory = searchParams.get('category');
 
     return (
         <Wrapper>
@@ -22,7 +23,6 @@ const Category = ({ totalPostNumber }: Props) => {
                         category: 'all',
                     },
                 }}
-                onClick={() => setActiveCategory('all')}
             >
                 <CategoryWrapper $isActive={activeCategory === 'all'}>
                     All ({totalPostNumber})
@@ -48,11 +48,6 @@ const Category = ({ totalPostNumber }: Props) => {
                                             subCategory.name.toLowerCase(),
                                     },
                                 }}
-                                onClick={() =>
-                                    setActiveCategory(
-                                        subCategory.name.toLowerCase(),
-                                    )
-                                }
                             >
                                 <CategoryWrapper
                                     $isActive={

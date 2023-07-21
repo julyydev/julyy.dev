@@ -37,9 +37,14 @@ const BlogPostTitle = (props: Props) => {
 };
 
 const Wrapper = styled.div`
+    width: 688px;
     position: relative;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
+
+    @media (max-width: 768px) {
+        width: calc(100% - 40px);
+    }
 `;
 
 const Thumbnail = styled(Image)`

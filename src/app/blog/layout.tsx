@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import SearchButton from '@/components/SearchButton';
 import SideMenu from '@/components/SideMenu';
 import getAllPostData from '@/lib/getAllPostData';
@@ -8,7 +8,9 @@ const BlogLayout = async ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-            <SideMenu totalPostNumber={postDataList.length} />
+            <Suspense>
+                <SideMenu totalPostNumber={postDataList.length} />
+            </Suspense>
             <SearchButton postDataList={postDataList} />
             {children}
         </>

@@ -4,6 +4,7 @@ import Profile from './Profile';
 import Category from './Category';
 import { EmailIcon, GithubIcon } from '@/assets/svg';
 import Divider from './common/Divider';
+import { usePathname } from 'next/navigation';
 
 interface Props {
     totalPostNumber: number;
@@ -11,9 +12,10 @@ interface Props {
 
 const SideMenu = (props: Props) => {
     const { totalPostNumber } = props;
+    const pathname = usePathname();
 
     return (
-        <Wrapper>
+        <Wrapper $isMain={/^\/blog$/.test(pathname)}>
             <Profile />
             <SNS>
                 <IconWrapper href="https://github.com/julyydev">
@@ -31,7 +33,11 @@ const SideMenu = (props: Props) => {
 
 export default SideMenu;
 
-const Wrapper = styled.aside`
+interface WrapperProps {
+    $isMain: boolean;
+}
+
+const Wrapper = styled.aside<WrapperProps>`
     width: 180px;
     height: 100%;
     padding: 20px 40px;
@@ -39,6 +45,10 @@ const Wrapper = styled.aside`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+
+    @media (max-width: ${props => (props.$isMain ? '992px' : '1350px')}) {
+        display: none;
+    }
 `;
 
 const SNS = styled.div`
