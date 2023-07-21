@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     title: '블로그 | Julyy.dev',
 };
 
+export const dynamic = 'force-static';
+
 const Page = async () => {
     const { postDataList } = await getAllPostData();
 

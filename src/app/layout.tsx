@@ -23,6 +23,8 @@ const ThemeScript = () => {
     );
 };
 
+export const dynamic = 'force-static';
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
