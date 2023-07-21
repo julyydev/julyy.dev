@@ -49,7 +49,7 @@ const TOC = (props: Props) => {
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth', // 부드러운 스크롤을 위해 behavior를 "smooth"로 설정합니다.
+            behavior: 'smooth',
         });
     };
 
@@ -113,12 +113,15 @@ const Wrapper = styled.aside`
     right: 0;
     transform: translate(0, -50%);
     width: 200px;
-    margin-right: 100px;
-    color: #bbb9b9;
+    margin-right: calc((50% - 384px) / 2 - 100px);
     font-size: 14px;
     border: 1px solid ${themedPalette.text4};
     border-radius: 15px;
     padding: 10px;
+
+    @media (max-width: 1350px) {
+        display: none;
+    }
 `;
 
 const Title = styled.div`

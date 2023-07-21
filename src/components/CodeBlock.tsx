@@ -79,12 +79,14 @@ const TopBar = (props: TopBarProps) => {
 };
 
 const Wrapper = styled.pre`
+    width: 100%;
     font-family: ${notoSansKR.normal.style.fontFamily};
     border-radius: 5px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
 `;
 
 const CodeWrapper = styled.div`
+    width: 100%;
     max-height: 90vh;
     overflow-y: auto;
     border-radius: 5px;

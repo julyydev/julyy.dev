@@ -76,7 +76,6 @@ const IconButton = styled.button`
     border-radius: 10px;
     width: 2.5rem;
     height: 2.5rem;
-    margin-right: 0.25rem;
     position: relative;
     &:hover {
         background: ${themedPalette.slight_layer};

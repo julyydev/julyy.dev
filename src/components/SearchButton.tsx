@@ -86,6 +86,10 @@ const SearchBox = styled.div`
     &:hover {
         cursor: pointer;
     }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 const SearchLeft = styled.div`

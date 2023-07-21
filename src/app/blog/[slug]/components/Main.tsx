@@ -40,11 +40,11 @@ const Main = (props: Props) => {
     }, [theme]);
 
     return (
-        <>
-            <Container>
+        <Container>
+            <Wrapper>
                 <BlogPostTitle postData={postData}></BlogPostTitle>
                 <TOC headings={headings} />
-                <div id="content">
+                <Content id="content">
                     <ReactMarkdown
                         rehypePlugins={[rehypeRaw]}
                         children={postContent}
@@ -136,17 +136,33 @@ const Main = (props: Props) => {
                             },
                         }}
                     />
-                </div>
+                </Content>
                 <Comments />
-            </Container>
-        </>
+            </Wrapper>
+        </Container>
     );
 };
 
 export default Main;
 
 const Container = styled.div`
-    width: 40%;
-    margin: 0 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: ${notoSansKR.normal.style.fontFamily};
+    padding: 0 20px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+`;
+
+const Wrapper = styled.div`
+    width: 728px;
+`;
+
+const Content = styled.div`
+    width: çalc(100% - 40px);
 `;

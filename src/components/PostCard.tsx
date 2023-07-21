@@ -62,7 +62,8 @@ const CardContainer = styled.div`
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     overflow: hidden;
-    width: 90%;
+    width: 100%;
+    height: 100%;
     font-family: ${nanumGothic.normal.style.fontFamily};
     transition: transform 0.3s, box-shadow 0.3s;
 
@@ -74,26 +75,29 @@ const CardContainer = styled.div`
 
 const Thumbnail = styled.div`
     width: 100%;
-    height: 200px;
+    height: 50%;
     object-fit: cover;
 `;
 
 const CardContent = styled.div`
+    width: 100%;
+    height: 50%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 16px;
-    height: 100%;
     background-color: ${themedPalette.bg_page2};
 `;
 
 const CardContentTopWrapper = styled.div`
+    width: calc(100% - 32px);
     display: flex;
     justify-content: space-between;
     align-items: center;
 `;
 
 const Title = styled.div`
+    width: calc(100% - 32px);
     font-size: 18px;
     font-family: ${nanumGothic.bold.style.fontFamily};
     color: ${themedPalette.text1};
@@ -105,7 +109,7 @@ const Summary = styled.div`
     font-family: ${nanumGothic.normal.style.fontFamily};
     margin: 16px 0;
     color: ${themedPalette.text2};
-    width: 100%;
+    width: calc(100% - 32px);
     height: 32px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -114,6 +118,7 @@ const Summary = styled.div`
 `;
 
 const TagWrapper = styled.div`
+    width: calc(100% - 32px);
     display: flex;
     align-items: center;
     flex-wrap: wrap;

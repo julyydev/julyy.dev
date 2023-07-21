@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Divider from './common/Divider';
 import { themedPalette } from '@/styles/themes';
+import styled from 'styled-components';
 
 const Comments = () => {
     const [commentsElement, setCommentsElement] = useState<Element | null>(
@@ -55,10 +56,14 @@ const Comments = () => {
 
     return (
         <>
-            <Divider width="auto" color={themedPalette.text4} />
-            <div ref={setCommentsElement} />
+            <Divider width="100%" color={themedPalette.text4} />
+            <Wrapper ref={setCommentsElement} />
         </>
     );
 };
 
 export default Comments;
+
+const Wrapper = styled.div`
+    width: 100%;
+`;
