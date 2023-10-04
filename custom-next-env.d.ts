@@ -12,3 +12,9 @@ declare module '*.png' {
 
     export default content;
 }
+
+declare module '*.jpeg' {
+    const content: import('../dist/client/image').StaticImageData;
+
+    export default content;
+}
