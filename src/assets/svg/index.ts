@@ -17,6 +17,12 @@ export { default as ShareIcon } from './icon_share.svg';
 export { default as CalendarIcon } from './icon_calendar.svg';
 export { default as CategoryIcon } from './icon_category.svg';
 export { default as TagIcon } from './icon_tag.svg';
+export { default as GithubSquareIcon } from './icon_github_square.svg';
+export { default as GmailIcon } from './icon_gmail.svg';
+export { default as FileIcon } from './icon_file.svg';
+export { default as WritingHandIcon } from './icon_writing_hand.svg';
+export { default as LinkedInIcon } from './icon_linkedin.svg';
+export { default as DoubleDownIcon } from './icon_double_down_angle.svg';
 
 export { default as CategoryCppIcon } from './category/category_cpp.svg';
 export { default as CategoryJavaScriptIcon } from './category/category_javascript.svg';
