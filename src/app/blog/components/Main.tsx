@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { styled } from 'styled-components';
 import PostCard from '@/components/PostCard';
 import Pagination from '@/components/Pagination';
-import { numberPagesViewOneTime } from '@/constants/page';
+import { numberCategoryPostsViewOneTime } from '@/constants/page';
 import { PostData } from '@/types/post';
 import { themedPalette } from '@/styles/themes';
 import BlogMain from '@/app/blog/components/BlogMain';
@@ -20,7 +20,11 @@ const Main = (props: Props) => {
     const category = searchParams.get('category');
     const page = Number(searchParams.get('page')) || 1;
 
-    const filteredPostDataList = postDataList.filter(postData => {
+    const sortedPostDataList = postDataList.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
+
+    const filteredPostDataList = sortedPostDataList.filter(postData => {
         if (category === 'all') return true;
         return postData.category === category;
     });
@@ -28,7 +32,7 @@ const Main = (props: Props) => {
     if (category === null)
         return (
             <Container>
-                <BlogMain />
+                <BlogMain postDataList={sortedPostDataList} />
             </Container>
         );
 
@@ -43,8 +47,8 @@ const Main = (props: Props) => {
                         <GridContainer>
                             {filteredPostDataList
                                 .slice(
-                                    numberPagesViewOneTime * (page - 1),
-                                    numberPagesViewOneTime * page,
+                                    numberCategoryPostsViewOneTime * (page - 1),
+                                    numberCategoryPostsViewOneTime * page,
                                 )
                                 .map(postData => (
                                     <StyledLink
