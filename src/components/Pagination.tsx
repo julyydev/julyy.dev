@@ -4,7 +4,7 @@ import {
     LeftAngleIcon,
     RightAngleIcon,
 } from '@/assets/svg';
-import { numberPagesViewOneTime } from '@/constants/page';
+import { numberCategoryPostsViewOneTime } from '@/constants/page';
 import manrope from '@/styles/fonts/manrope';
 import { themedPalette } from '@/styles/themes';
 import { useRouter } from 'next/navigation';
@@ -19,7 +19,7 @@ interface Props {
 const Pagination = (props: Props) => {
     const { category, postNumber, currentPage } = props;
     const pageNumbers: number[] = Array.from(
-        { length: (postNumber - 1) / numberPagesViewOneTime + 1 },
+        { length: (postNumber - 1) / numberCategoryPostsViewOneTime + 1 },
         (_, index) => index + 1,
     );
     const router = useRouter();

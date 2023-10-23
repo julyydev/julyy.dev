@@ -18,9 +18,7 @@ const Header = () => {
         <HeaderWrapper $isScrollTop={isScrollTop}>
             <ScrollProgressBar />
             <Title>
-                <LogoLink href={'/'}>
-                    Julyy.dev<Beta>βeta</Beta>
-                </LogoLink>
+                <LogoLink href={'/'}>Julyy.dev</LogoLink>
             </Title>
             <Navigation>
                 <ThemeToggleButton />
@@ -76,10 +74,6 @@ const Title = styled.h1`
         font-size: 16px;
         margin-left: -20px;
     }
-`;
-
-const Beta = styled.span`
-    font-size: 10px;
 `;
 
 const LogoLink = styled(Link)`

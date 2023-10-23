@@ -6,7 +6,7 @@ import Divider from './common/Divider';
 const Footer = () => {
     return (
         <Wrapper>
-            <Divider width="70%" />
+            <Divider width="95%" />
             <CopyRight>© 2023 Julyy, All Rights Reserved.</CopyRight>
         </Wrapper>
     );
