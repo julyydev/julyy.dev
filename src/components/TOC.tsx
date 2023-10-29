@@ -11,7 +11,7 @@ interface Props {
 
 const TOC = (props: Props) => {
     const { headings } = props;
-    const headingIds = headings.map(heading => heading.id);
+    const headingIds = headings.map(heading => heading.value);
     const [currentHeadingId, setCurrentHeadingId] = useState<string>('');
 
     useEffect(() => {
@@ -69,10 +69,10 @@ const TOC = (props: Props) => {
                     <HeadingButton
                         key={heading.id}
                         onClick={() => {
-                            location.href = `#${heading.id}`;
+                            location.href = `#${heading.value}`;
                         }}
                         tag={heading.tag}
-                        $isFocus={currentHeadingId === heading.id}
+                        $isFocus={currentHeadingId === heading.value}
                     >
                         {heading.value}
                     </HeadingButton>
