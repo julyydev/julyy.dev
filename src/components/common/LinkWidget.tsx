@@ -60,7 +60,7 @@ const Wrapper = styled.div<WrapperProps>`
     transition: opacity 0.5s ease-in-out;
 
     &:hover {
-        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 8px ${themedPalette.shadow};
         transform: rotate(2deg);
         animation: shake 0.3s ease-in-out infinite;
         cursor: pointer;

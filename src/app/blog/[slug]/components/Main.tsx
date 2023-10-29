@@ -21,6 +21,7 @@ import Comments from '@/components/Comments';
 import React, { useEffect, useState } from 'react';
 import InlineCode from '@/components/InlineCode';
 import LinkBlock from '@/components/LinkBlock';
+import { themedPalette } from '@/styles/themes';
 
 interface Props {
     postData: PostData;
@@ -97,8 +98,7 @@ const Main = (props: Props) => {
                                             maxWidth: '100%',
                                             width: 'fit-content',
                                             height: 'fit-content',
-                                            boxShadow:
-                                                '0 0 10px 1px rgba(0, 0, 0, 0.1)',
+                                            boxShadow: `0 0 10px 1px ${themedPalette.shadow}`,
                                             borderRadius: '5px',
                                         }}
                                     />

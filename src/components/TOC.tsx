@@ -115,7 +115,7 @@ const Wrapper = styled.aside`
     width: 200px;
     margin-right: calc((50% - 384px) / 2 - 100px);
     font-size: 14px;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 2px ${themedPalette.shadow};
     border-radius: 15px;
     padding: 10px;
 

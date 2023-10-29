@@ -62,7 +62,7 @@ export default PostCard;
 const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px ${themedPalette.shadow};
     border-radius: 15px;
     overflow: hidden;
     width: 100%;
@@ -72,7 +72,7 @@ const CardContainer = styled.div`
 
     &:hover {
         transform: translateY(-10px);
-        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 8px ${themedPalette.shadow};
     }
 `;
 
