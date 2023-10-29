@@ -10,11 +10,7 @@ const getPostDataBySlug = cache(async (slug: string) => {
     const postsDirectory = path.join(process.cwd(), 'src/assets/md');
     const fullPath = path.join(postsDirectory, `${slug}.md`);
 
-    if (!fs.existsSync(fullPath)) {
-        return {
-            notFound: true,
-        };
-    }
+    if (!fs.existsSync(fullPath)) throw Error('Not Found');
 
     const rawMD = fs.readFileSync(fullPath, 'utf8');
     const processedMD = matter(rawMD);

@@ -12,37 +12,46 @@ export const generateMetadata = async ({
     params,
 }: Params): Promise<Metadata> => {
     const { slug } = params;
-    const { postData, notFound } = await getPostDataBySlug(slug);
 
-    if (notFound)
+    try {
+        const { postData } = await getPostDataBySlug(slug);
+
+        return {
+            title: postData.title,
+            description: postData.summary,
+            category: postData.category,
+            keywords: postData.tag,
+            openGraph: {
+                title: postData.title,
+                images: postData.thumbnail,
+                description: postData.summary,
+            },
+        };
+    } catch (error) {
         return {
             title: 'not found',
         };
-
-    return {
-        title: postData?.title,
-        openGraph: {
-            title: postData?.title,
-            images: postData?.thumbnail,
-            description: postData?.summary,
-        },
-    };
+    }
 };
 
 const Page = async ({ params }: Params) => {
     const { slug } = params;
-    const { postData, postContent, headings, notFound } =
-        await getPostDataBySlug(slug);
 
-    if (notFound) return <></>;
+    try {
+        const { postData, postContent, headings } = await getPostDataBySlug(
+            slug,
+        );
 
-    return (
-        <Main
-            postData={postData!}
-            postContent={postContent!}
-            headings={headings!}
-        />
-    );
+        return (
+            <Main
+                postData={postData!}
+                postContent={postContent!}
+                headings={headings!}
+            />
+        );
+    } catch (error) {
+        return <></>;
+    }
 };
 
 export default Page;
