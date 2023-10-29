@@ -76,8 +76,8 @@ type ThemedPalette = Record<VariableKey, string>;
 
 const themeVariableSets: Record<Theme, ThemeVariables> = {
     light: {
-        bg_page1: '#F8F9FA',
-        bg_page2: '#F8F9FA',
+        bg_page1: '#FFFFFF',
+        bg_page2: '#FFFFFF',
         opaque_bg_page1: 'rgba(248, 249, 250, 0.5)',
 
         text1: '#212529',
