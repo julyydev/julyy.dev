@@ -51,12 +51,10 @@ const Main = (props: Props) => {
                                     numberCategoryPostsViewOneTime * page,
                                 )
                                 .map(postData => (
-                                    <StyledLink
+                                    <PostCard
                                         key={postData.slug}
-                                        href={`/blog/${postData.slug}`}
-                                    >
-                                        <PostCard postData={postData} />
-                                    </StyledLink>
+                                        postData={postData}
+                                    />
                                 ))}
                         </GridContainer>
                         <Pagination
@@ -144,22 +142,6 @@ const GridWrapper = styled.div`
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
-`;
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    width: 320px;
-    height: 360px;
-
-    @media (max-width: 992px) {
-        width: 100%;
-        height: 100%;
-    }
-
-    @media (max-width: 768px) {
-        width: 100%;
-        height: 100%;
-    }
 `;
 
 const NoPost = styled.div`

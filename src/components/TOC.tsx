@@ -11,7 +11,7 @@ interface Props {
 
 const TOC = (props: Props) => {
     const { headings } = props;
-    const headingIds = headings.map(heading => heading.id);
+    const headingIds = headings.map(heading => heading.value);
     const [currentHeadingId, setCurrentHeadingId] = useState<string>('');
 
     useEffect(() => {
@@ -69,10 +69,10 @@ const TOC = (props: Props) => {
                     <HeadingButton
                         key={heading.id}
                         onClick={() => {
-                            location.href = `#${heading.id}`;
+                            location.href = `#${heading.value}`;
                         }}
                         tag={heading.tag}
-                        $isFocus={currentHeadingId === heading.id}
+                        $isFocus={currentHeadingId === heading.value}
                     >
                         {heading.value}
                     </HeadingButton>
@@ -115,7 +115,7 @@ const Wrapper = styled.aside`
     width: 200px;
     margin-right: calc((50% - 384px) / 2 - 100px);
     font-size: 14px;
-    border: 1px solid ${themedPalette.text4};
+    box-shadow: 0 0 10px 2px ${themedPalette.shadow};
     border-radius: 15px;
     padding: 10px;
 

@@ -19,6 +19,9 @@ import { useRecoilValue } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import Comments from '@/components/Comments';
 import React, { useEffect, useState } from 'react';
+import InlineCode from '@/components/InlineCode';
+import LinkBlock from '@/components/LinkBlock';
+import { themedPalette } from '@/styles/themes';
 
 interface Props {
     postData: PostData;
@@ -88,15 +91,26 @@ const Main = (props: Props) => {
                                         alt={alt as string}
                                         placeholder="blur"
                                         blurDataURL={src}
-                                        sizes="100vw"
+                                        sizes={'width: 100%'}
                                         width={100}
                                         height={100}
                                         style={{
-                                            width: 'auto',
-                                            height: 'auto',
+                                            maxWidth: '100%',
+                                            width: 'fit-content',
+                                            height: 'fit-content',
+                                            boxShadow: `0 0 10px 1px ${themedPalette.shadow}`,
                                             borderRadius: '5px',
                                         }}
                                     />
+                                );
+                            },
+                            a({ node, children }) {
+                                return (
+                                    <LinkBlock
+                                        href={node.properties?.href as string}
+                                    >
+                                        {children}
+                                    </LinkBlock>
                                 );
                             },
                             pre({ children }) {
@@ -113,7 +127,16 @@ const Main = (props: Props) => {
                                     className || '',
                                 );
 
+                                if (inline) {
+                                    return (
+                                        <InlineCode
+                                            value={children[0] as string}
+                                        />
+                                    );
+                                }
+
                                 if (codeTheme === null) return <></>;
+
                                 return !inline && match ? (
                                     <SyntaxHighlighter
                                         {...props}

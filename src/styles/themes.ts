@@ -13,6 +13,8 @@ type ThemeVariables = {
     border4: string;
     button_text: string;
 
+    shadow: string;
+
     slight_layer: string;
     opaque_layer: string;
 
@@ -76,9 +78,9 @@ type ThemedPalette = Record<VariableKey, string>;
 
 const themeVariableSets: Record<Theme, ThemeVariables> = {
     light: {
-        bg_page1: '#F8F9FA',
-        bg_page2: '#F8F9FA',
-        opaque_bg_page1: 'rgba(248, 249, 250, 0.5)',
+        bg_page1: '#FFFFFF',
+        bg_page2: '#FFFFFF',
+        opaque_bg_page1: 'rgba(256, 256, 256, 0.5)',
 
         text1: '#212529',
         text2: '#495057',
@@ -89,6 +91,8 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
         border3: '#DEE2E6',
         border4: '#F1F3F5',
         button_text: '#FFFFFF',
+
+        shadow: 'rgba(0, 0, 0, 0.1)',
 
         slight_layer: 'rgba(0,0,0,0.05)',
         opaque_layer: 'rgba(249,249,249,0.85)',
@@ -156,6 +160,8 @@ const themeVariableSets: Record<Theme, ThemeVariables> = {
         border3: '#4D4D4D',
         border4: '#2A2A2A',
         button_text: '#121212',
+
+        shadow: 'rgba(255,255,255,0.1)',
 
         slight_layer: 'rgba(255,255,255,0.1)',
         opaque_layer: 'rgba(0, 0, 0, 0.85)',
