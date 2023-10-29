@@ -26,3 +26,4 @@ export { default as DoubleDownIcon } from './icon_double_down_angle.svg';
 
 export { default as CategoryCppIcon } from './category/category_cpp.svg';
 export { default as CategoryJavaScriptIcon } from './category/category_javascript.svg';
+export { default as CategoryBlogIcon } from './category/category_blog.svg';

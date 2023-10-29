@@ -1,4 +1,8 @@
-import { CategoryCppIcon, CategoryJavaScriptIcon } from './svg';
+import {
+    CategoryBlogIcon,
+    CategoryCppIcon,
+    CategoryJavaScriptIcon,
+} from './svg';
 import React from 'react';
 
 type CategoryType = 'main' | 'sub';
@@ -17,48 +21,20 @@ const categories: Category[] = [
         subCategories: [
             {
                 type: 'sub',
-                name: 'C++',
-                icon: CategoryCppIcon,
-            },
-            {
-                type: 'sub',
                 name: 'JavaScript',
                 icon: CategoryJavaScriptIcon,
             },
-        ],
-    },
-    {
-        type: 'main',
-        name: 'Problem Solving',
-        subCategories: [
             {
                 type: 'sub',
-                name: 'Baekjoon',
+                name: 'C++',
+                icon: CategoryCppIcon,
             },
         ],
     },
     {
         type: 'main',
-        name: 'Computer Science',
-        subCategories: [
-            {
-                type: 'sub',
-                name: 'Network',
-            },
-            {
-                type: 'sub',
-                name: 'Operating System',
-            },
-        ],
-    },
-    {
-        type: 'main',
-        name: 'Test',
-        subCategories: [
-            { type: 'sub', name: 'aaa' },
-            { type: 'sub', name: 'bbb' },
-            { type: 'sub', name: 'ccc' },
-        ],
+        name: 'ETC',
+        subCategories: [{ type: 'sub', name: 'Blog', icon: CategoryBlogIcon }],
     },
 ];
 
