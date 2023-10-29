@@ -95,6 +95,8 @@ const Main = (props: Props) => {
                                             maxWidth: '100%',
                                             width: 'fit-content',
                                             height: 'fit-content',
+                                            boxShadow:
+                                                '0 0 10px 1px rgba(0, 0, 0, 0.1)',
                                             borderRadius: '5px',
                                         }}
                                     />
