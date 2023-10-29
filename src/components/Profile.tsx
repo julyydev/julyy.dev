@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ProfileImage from '../assets/image/profile.png';
+import ProfileImage from '../assets/image/profile.jpeg';
 import Image from 'next/image';
 import { themedPalette } from '@/styles/themes';
 
@@ -32,7 +32,8 @@ const Wrapper = styled.div`
 const ProfileWrapper = styled.div`
     width: 150px;
     height: 150px;
-    border: 1px solid ${themedPalette.text3};
+    border: 1px solid ${themedPalette.text4};
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     overflow: hidden;
     display: flex;
