@@ -88,12 +88,13 @@ const Main = (props: Props) => {
                                         alt={alt as string}
                                         placeholder="blur"
                                         blurDataURL={src}
-                                        sizes="100vw"
+                                        sizes={'width: 100%'}
                                         width={100}
                                         height={100}
                                         style={{
-                                            width: 'auto',
-                                            height: 'auto',
+                                            maxWidth: '100%',
+                                            width: 'fit-content',
+                                            height: 'fit-content',
                                             borderRadius: '5px',
                                         }}
                                     />
