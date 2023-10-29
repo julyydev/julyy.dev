@@ -19,6 +19,7 @@ import { useRecoilValue } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import Comments from '@/components/Comments';
 import React, { useEffect, useState } from 'react';
+import InlineCode from '@/components/InlineCode';
 
 interface Props {
     postData: PostData;
@@ -116,7 +117,18 @@ const Main = (props: Props) => {
                                     className || '',
                                 );
 
+                                if (inline) {
+                                    console.log('!!!');
+                                    console.log(children);
+                                    return (
+                                        <InlineCode
+                                            value={children[0] as string}
+                                        ></InlineCode>
+                                    );
+                                }
+
                                 if (codeTheme === null) return <></>;
+
                                 return !inline && match ? (
                                     <SyntaxHighlighter
                                         {...props}
